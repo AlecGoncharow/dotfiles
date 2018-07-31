@@ -112,7 +112,7 @@ au BufRead,BufNewFile *.css set tabstop=2
 "spaces for indents
 au BufRead,BufNewFile *.css set shiftwidth=2
 au BufRead,BufNewFile *.css set expandtab
-au BufRead,BufNewFile *.html,*.py,*.js set softtabstop=2
+au BufRead,BufNewFile *.css set softtabstop=2
 
 set ai "auto indent
 set si "smart indent
