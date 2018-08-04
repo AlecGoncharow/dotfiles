@@ -18,7 +18,6 @@ match_lhs=""
 	&& match_lhs=$(dircolors --print-database)
 
 if [[ $'\n'${match_lhs} == *$'\n'"TERM "${safe_term}* ]] ; then
-	
 	# we have colors :-)
 
 	# Enable colors for ls, etc. Prefer ~/.dir_colors

@@ -13,10 +13,14 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'Valloric/YouCompleteMe'
 " file system explorer
 Plugin 'scrooloose/nerdtree'
+" rust lang
+Plugin 'rust-lang/rust.vim'
+" syntastic
+Plugin 'vim-syntastic/syntastic'
 " statusline
 " Plugin 'powerline/powerline'
-"Plugin 'vim-airline/vim-airline'
-"Plugin 'vim-airline/vim-airline-themes'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
@@ -48,6 +52,10 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
+"
+
+hi clear SignColumn
+
 function! HasPaste()
     if &paste
         return 'PASTE MODE  '
@@ -70,6 +78,11 @@ set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ 
 
 map <C-n> :NERDTreeToggle<CR>
 map <C-h> :set hlsearch!<CR>
+
+"nnoremap <C-Left> :tabprevious<CR>
+"nnoremap <C-Right> :tabnext<CR>
+
+nnoremap <C-l> :ls<CR>:b<space>
 
 set hlsearch
 set incsearch
@@ -131,4 +144,31 @@ let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_collect_identifiers_from_comments_and_strings=1
 
 set backspace=indent,eol,start
+
+" Rust
+let g:rustfmt_autosave = 1
+"let g:ycm_rust_src_path = '~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/'
+"let g:racer_experimental_completer = 1
+"let g:ycm_racerd_binary_path = '~/.cargo/bin/racer'
+nnoremap <C-]> :YcmCompleter GoTo<CR>
+
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+nnoremap <C-e> :SyntasticReset<CR>
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" airline
+let g:airline_theme='deus'
+let g:airline_powerline_fonts = 1
+"let g:airline_symbols.space = "\ua0"
+let g:airline_skip_empty_sections = 1
+" let timeoutlen = 10
+
+let g:airline#extensions#tabline#enabled = 1
 
