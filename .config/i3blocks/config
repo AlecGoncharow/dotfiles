@@ -39,7 +39,7 @@ color=#006DA3
 #
 # The type defaults to "mem" if the instance is not specified.
 [memory]
-label=MEM
+label=🐏
 separator=false
 interval=30
 
@@ -55,9 +55,10 @@ interval=30
 # The script may be called with a optional argument to set the alert
 # (defaults to 10 for 10%).
 [disk]
-label=HOME
+label=
 #instance=/mnt/data
 interval=30
+separator=false
 
 [disk-io]
 label= 
@@ -95,6 +96,12 @@ interval=10
 #min_width=CPU: 100.00%
 separator=false
 
+[load_average]
+interval=10
+separator=false
+label=AVG
+
+
 #
 # Temperature
 #
@@ -106,21 +113,19 @@ label=TEMP
 interval=10
 command=/usr/lib/i3blocks/temperature --chip coretemp-isa-0000
 
-
-#[load_average]
-#interval=10
-
 # Battery indicator
 #
 # The battery instance defaults to 0.
 [battery]
+command=~/.config/i3blocks/scripts/batterybar
 #label=BAT
-label= BAT
+markup=pango
+#label= BAT
 #🔋
 #⚡
 #instance=1
 interval=30
-separator=false
+#separator=false
 
 [brightness]
 command=~/.config/i3blocks/scripts/brightness.py
