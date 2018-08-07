@@ -1,0 +1,15 @@
+#!/bin/bash
+
+datefmt='+%a %Y-%m-%d %H:%M:%S'
+
+while getopts "f:" opt; do
+	case $opt in
+		f) datefmt="$OPTARG" ;;
+	esac
+done
+
+case "$BLOCK_BUTTON" in 1|2|3)
+	exec termite -e "bash -c 'cal -Y'" --hold & disown
+esac
+
+date "$datefmt"
