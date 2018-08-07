@@ -221,6 +221,8 @@ bindsym XF86AudioMute exec --no-startup-id  "amixer set Master toggle && pkill -
 bindsym --release Caps_Lock exec --no-startup-id  pkill -SIGRTMIN+11 i3blocks
 bindsym --release Num_Lock exec --no-startup-id  pkill -SIGRTMIN+11 i3blocks
 
+# home key combinations
+#bindsym Mod1 + Left exec --no-startup-id "xdotool key Home"
 
 # gaps stuff
 for_window [class="^.*"] border pixel 0

@@ -30,7 +30,7 @@ markup=none
 
 
 [arch-update]
-command=~/.config/i3blocks/arch-update.py #run arch-update.py -h for options
+command=~/.config/i3blocks/scripts/arch-update.py #run arch-update.py -h for options
 interval=3600
 markup=pango
 color=#006DA3
@@ -59,6 +59,13 @@ label=HOME
 #instance=/mnt/data
 interval=30
 
+[disk-io]
+label= 
+command=~/.config/i3blocks/scripts/disk-io -w 2
+#command=$SCRIPT_DIR/disk-io -w 3 -M -P 0
+interval=persist
+markup=pango
+instance=/mmcblk0/
 # Network interface monitoring
 #
 # If the instance is not specified, use the interface used for default route.
@@ -116,7 +123,7 @@ interval=30
 separator=false
 
 [brightness]
-command=~/.config/i3blocks/brightness.py
+command=~/.config/i3blocks/scripts/brightness.py
 label=BRI
 #☀️
 interval=once
@@ -156,7 +163,8 @@ signal=10
 # Date Time
 #
 [time]
-command=date '+%a %Y-%m-%d %H:%M:%S'
+label=
+command=~/.config/i3blocks/scripts/myCalendar -f '+%a %Y-%m-%d %H:%M:%S'
 interval=1
 
 # Generic media player support
