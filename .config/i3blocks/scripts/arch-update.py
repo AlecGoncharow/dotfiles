@@ -97,7 +97,7 @@ if args.aur:
 
 update_count = len(updates)
 if update_count > 0:
-    info = '-Syu updates available: {}'.format(update_count)
+    info = '-Syu  : {}'.format(update_count)
     matches = matching_updates(updates, args.watch)
     if matches:
         info += ' [{0}]'.format(', '.join(matches))
@@ -113,4 +113,4 @@ if update_count > 0:
                                 shell=True)
 
 elif not args.quiet:
-    print(message.format(args.base_color, '-Syu ✓'))
+    print(message.format(args.base_color, '-Syu  '))
