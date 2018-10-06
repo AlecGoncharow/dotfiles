@@ -101,7 +101,6 @@ interval=10
 separator=false
 label=AVG
 
-
 #
 # Temperature
 #
@@ -112,6 +111,29 @@ label=AVG
 label=TEMP
 interval=10
 command=/usr/lib/i3blocks/temperature --chip coretemp-isa-0000
+
+# Key indicators
+#
+# Add the following bindings to i3 config file:
+#
+# bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
+# bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
+[keyindicator]
+instance=CAPS
+interval=once
+signal=11
+#
+#[keyindicator]
+#instance=NUM
+#interval=once
+#signal=11
+
+[brightness]
+command=~/.config/i3blocks/scripts/brightness.py
+label=
+#☀️
+interval=once
+signal=12
 
 # Battery indicator
 #
@@ -127,42 +149,19 @@ markup=pango
 interval=30
 #separator=false
 
-[brightness]
-command=~/.config/i3blocks/scripts/brightness.py
-label=
-#☀️
-interval=once
-signal=12
-
-# Key indicators
-#
-# Add the following bindings to i3 config file:
-#
-# bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
-# bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
-#[keyindicator]
-#instance=CAPS
-#interval=once
-#signal=11
-#
-#[keyindicator]
-#instance=NUM
-#interval=once
-#signal=11
-
 # Volume indicator
 #
 # The first parameter sets the step (and units to display)
 # The second parameter overrides the mixer selection
 # See the script for details.
 
-[volume]
-#label=VOL
-label=♪
-instance=Master
+#[volume]
+##label=VOL
+#label=♪
+#instance=Master
 #instance=PCM
-interval=once
-signal=10
+#interval=once
+#signal=10
 
 
 # Date Time

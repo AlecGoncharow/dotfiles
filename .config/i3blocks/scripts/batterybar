@@ -22,6 +22,7 @@
 readarray -t output <<< $(acpi battery)
 battery_count=${#output[@]}
 
+
 for line in "${output[@]}";
 do
 	percentages+=($(echo "$line" | grep -o -m1 '[0-9]\{1,3\}%' | tr -d '%'))
@@ -40,7 +41,7 @@ squares="■"
 #discharging
 dis_colors=("#FF0027" "#FF3B05" "#FFB923" "#FFD000" "#E4FF00" "#ADFF00"
 "#6DFF00" "#10BA00")
-charging_color="#00AFE3"
+charging_color="#00FFFF"
 full_color="#FFFFFF"
 ac_color="#535353"
 
@@ -73,7 +74,7 @@ while getopts 1:2:3:4:5:6:7:8:c:f:a:h opt; do
 done
 
 end=$(($battery_count - 1))
-for i in $(seq 1 $end);
+for i in $(seq 0 $end);
 do
 	if (( percentages[$i] >=85 )); then
 		squares=""
@@ -88,7 +89,8 @@ do
 	fi
 
 	if [[ "${statuses[$i]}" = "Unknown" ]]; then
-		squares="<sup>?</sup>$squares"
+		#squares="<sup>?</sup>$squares"
+		continue
 	fi
 
 	case "${statuses[$i]}" in

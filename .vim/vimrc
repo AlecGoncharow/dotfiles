@@ -21,6 +21,8 @@ Plugin 'vim-syntastic/syntastic'
 " Plugin 'powerline/powerline'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+"C++ Highlighting
+Plugin 'octol/vim-cpp-enhanced-highlight'
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
@@ -95,12 +97,12 @@ set smarttab
 
 "------------Start Python PEP 8 stuff----------------
 " Number of spaces that a pre-existing tab is equal to.
-au BufRead,BufNewFile *.html,*py,*pyw,*.c,*.h,*.js set tabstop=4
+au BufRead,BufNewFile *.html,*py,*pyw,*.c,*.h,*.js,*.tex set tabstop=4
 
 "spaces for indents
-au BufRead,BufNewFile *.html,*.py,*.pyw,*.js set shiftwidth=4
-au BufRead,BufNewFile *.html,*.py,*.pyw,*.js set expandtab
-au BufRead,BufNewFile *.html,*.py,*.js set softtabstop=4
+au BufRead,BufNewFile *.html,*.py,*.pyw,*.js,*.tex set shiftwidth=4
+au BufRead,BufNewFile *.html,*.py,*.pyw,*.js,*.tex set expandtab
+au BufRead,BufNewFile *.html,*.py,*.js,*.tex set softtabstop=4
 
 " Use the below highlight group when displaying bad whitespace is desired.
 highlight BadWhitespace ctermbg=red guibg=red
@@ -127,6 +129,7 @@ au BufRead,BufNewFile *.css set shiftwidth=2
 au BufRead,BufNewFile *.css set expandtab
 au BufRead,BufNewFile *.css set softtabstop=2
 
+au BufRead,BufNewFile *.tex set syntax=context
 set ai "auto indent
 set si "smart indent
 
@@ -139,7 +142,7 @@ syntax on
 highlight Pmenu ctermfg=cyan ctermbg=black
 
 let g:ycm_python_binary_path = 'python'
-let g:ycm_server_python_interpreter = '/usr/bin/python2'
+let g:ycm_server_python_interpreter = '/usr/bin/python'
 let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_collect_identifiers_from_comments_and_strings=1
 
