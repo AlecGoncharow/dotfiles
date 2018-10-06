@@ -4,10 +4,10 @@ source /usr/share/zsh/share/antigen.zsh
 # antigen use oh-my-zsh
 
 # Bundles from the default repo.
-# antigen bundle git
+antigen bundle git
 # antigen bundle refined
-# antigen bundle command-not-found
-# antigen bundle vi-mode
+antigen bundle command-not-found
+antigen bundle vi-mode
 
 # Syntax highlighting bundle.
 antigen bundle zsh-users/zsh-syntax-highlighting
@@ -21,3 +21,9 @@ antigen apply
 
 ################################################
 bindkey -v
+
+
+alias ls="ls --color=auto"
+alias dir="dir --color=auto"
+alias grep="grep --color=auto"
+alias dmesg='dmesg --color'
