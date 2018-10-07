@@ -18,6 +18,7 @@ match_lhs=""
 	&& match_lhs=$(dircolors --print-database)
 
 if [[ $'\n'${match_lhs} == *$'\n'"TERM "${safe_term}* ]] ; then
+	
 	# we have colors :-)
 
 	# Enable colors for ls, etc. Prefer ~/.dir_colors
@@ -33,7 +34,7 @@ else
 
 	# show root@ when we do not have colors
 
-	PS1="\u@\h \w \$([[ \$? != 0 ]] && echo \"!\")\$ "
+	PS1="\u@\h \w \$([[ \$? != 0 ]] && echo \"! \")\$ "
 
 	# Use this other PS1 string if you want \W for root and \w for all other users:
 	# PS1="\u@\h $(if [[ ${EUID} == 0 ]]; then echo '\W'; else echo '\w'; fi) \$([[ \$? != 0 ]] && echo \":( \")\$ "
@@ -43,8 +44,6 @@ alias ls="ls --color=auto"
 alias dir="dir --color=auto"
 alias grep="grep --color=auto"
 alias dmesg='dmesg --color'
-
-export EDITOR=vim
 
 PS1="$(if [[ ${EUID} == 0 ]]; then echo '\[\033[01;31m\]\h'; else echo '\[\033[01;32m\]\u@\h'; fi)\[\033[01;34m\] \w \$([[ \$? != 0 ]] && echo \"\[\033[01;31m\]!\[\033[01;34m\] \")\\$\[\033[00m\] "
 #PS1='[\u@\h \W]\$ '

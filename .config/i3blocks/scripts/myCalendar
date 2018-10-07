@@ -1,6 +1,4 @@
 #!/bin/bash
-# this is a simple bash script / blocklet for i3blocks 
-# that will open a new termite instance with 'cal' when clicked
 
 datefmt='+%a %Y-%m-%d %H:%M:%S'
 

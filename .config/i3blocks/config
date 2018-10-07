@@ -30,10 +30,16 @@ markup=none
 
 
 [arch-update]
-command=~/.config/i3blocks/scripts/arch-update.py #run arch-update.py -h for options
+command=python ~/.config/i3blocks/scripts/arch-update.py #run arch-update.py -h for options
 interval=3600
 markup=pango
-color=#006DA3
+
+[mediaplayer]
+command=perl ~/.config/i3blocks/scripts/mediaplayer
+instance=cmus
+interval=5
+signal=10
+label=♪
 
 # Memory usage
 #
@@ -61,19 +67,18 @@ interval=30
 separator=false
 
 [disk-io]
-label= 
-command=~/.config/i3blocks/scripts/disk-io -w 2
-#command=$SCRIPT_DIR/disk-io -w 3 -M -P 0
+label=
+command=~/.config/i3blocks/scripts/disk-io
 interval=persist
-markup=pango
-instance=/mmcblk0/
+#markup=pango
+
 # Network interface monitoring
 #
 # If the instance is not specified, use the interface used for default route.
 # The address can be forced to IPv4 or IPv6 with -4 or -6 switches.
 [iface]
 #instance=wlan0
-color=#00ffff
+color=#00FF00
 interval=10
 separator=false
 
@@ -96,12 +101,6 @@ interval=10
 #min_width=CPU: 100.00%
 separator=false
 
-[load_average]
-interval=10
-separator=false
-label=AVG
-
-#
 # Temperature
 #
 # Support multiple chips, though lm-sensors.
@@ -110,10 +109,29 @@ label=AVG
 [temperature]
 label=TEMP
 interval=10
-command=/usr/lib/i3blocks/temperature --chip coretemp-isa-0000
+separator=false
+
+[load_average]
+interval=10
+
+# Battery indicator
+#
+# The battery instance defaults to 0.
+#[battery]
+#label=BAT
+#label=⚡
+#instance=1
+#interval=30
+#separator=false
+
+#[brightness]
+#command=~/.config/i3blocks/brightness.py
+#label=☀
+#interval=once
+#signal=12
 
 # Key indicators
-#
+#🎧
 # Add the following bindings to i3 config file:
 #
 # bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
@@ -122,32 +140,11 @@ command=/usr/lib/i3blocks/temperature --chip coretemp-isa-0000
 instance=CAPS
 interval=once
 signal=11
-#
-#[keyindicator]
-#instance=NUM
-#interval=once
-#signal=11
 
-[brightness]
-command=~/.config/i3blocks/scripts/brightness.py
-label=
-#☀️
+[keyindicator]
+instance=NUM
 interval=once
-signal=12
-
-# Battery indicator
-#
-# The battery instance defaults to 0.
-[battery]
-command=~/.config/i3blocks/scripts/batterybar
-#label=BAT
-markup=pango
-#label= BAT
-#🔋
-#⚡
-#instance=1
-interval=30
-#separator=false
+signal=11
 
 # Volume indicator
 #
@@ -155,20 +152,26 @@ interval=30
 # The second parameter overrides the mixer selection
 # See the script for details.
 
-#[volume]
-##label=VOL
-#label=♪
-#instance=Master
+[volume]
+#label=VOL
+label=VOL
+instance=Master
 #instance=PCM
-#interval=once
-#signal=10
+interval=once
+signal=10
 
 
 # Date Time
 #
+#[calendar]
+#command=~/.config/i3blocks/scripts/calendar
+#label=
+#interval=3600
+
 [time]
+command=~/.config/i3blocks/scripts/myCalendar -f '+%a %Y-%m-%d %H:%M:%S' 
 label=
-command=~/.config/i3blocks/scripts/myCalendar -f '+%a %Y-%m-%d %H:%M:%S'
+#command=date '+%a %Y-%m-%d %H:%M:%S'
 interval=1
 
 # Generic media player support
@@ -185,5 +188,6 @@ interval=1
 # Support multiple VPN, with colors.
 #[openvpn]
 #interval=20
+
 
 
