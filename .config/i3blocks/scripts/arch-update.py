@@ -8,7 +8,6 @@ import subprocess
 from subprocess import check_output
 import argparse
 import re
-import os
 
 
 def create_argparse():
@@ -104,6 +103,7 @@ if update_count > 0:
         info += ' [{0}]'.format(', '.join(matches))
     print(message.format(args.updates_available_color, info))
 
+    import os
     if 'BLOCK_BUTTON' in os.environ:
         button = os.environ['BLOCK_BUTTON']
         if button is not '':
@@ -112,6 +112,5 @@ if update_count > 0:
                 subprocess.call("termite -e 'sudo pacman -Syu' --hold",
                                 shell=True)
 
-
 elif not args.quiet:
-    print(message.format(args.base_color, '-Syu '))
+    print(message.format(args.base_color, '-Syu  '))

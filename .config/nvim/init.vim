@@ -1,53 +1,26 @@
 set nocompatible              " be iMproved, required
-filetype off                  " required
+" auto-install vim-plug                                                                                                                
+if empty(glob('~/.config/nvim/autoload/plug.vim'))                                                                                    
+  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \                                                                  
+      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim                                                             
+  autocmd VimEnter * PlugInstall                                                                                                      
+endif                                                                                                                                 
+call plug#begin('~/.config/nvim/plugged')               
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-" Plugin 'VundleVim/Vundle.vim'
-Plugin 'neoclide/coc.nvim', {'branch': 'release'}
-" AutoComplete plugin
-" Plugin 'Valloric/YouCompleteMe'
-Plugin 'racer-rust/vim-racer'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " rust lang
-Plugin 'rust-lang/rust.vim'
+Plug 'rust-lang/rust.vim'
 " syntastic
-Plugin 'vim-syntastic/syntastic'
-" statusline
-" Plugin 'powerline/powerline'
-" Plugin 'vim-airline/vim-airline'
-" Plugin 'vim-airline/vim-airline-themes'
+Plug 'vim-syntastic/syntastic'
 "C++ Highlighting
-Plugin 'octol/vim-cpp-enhanced-highlight'
-"GO
-Plugin 'fatih/vim-go'
+Plug 'octol/vim-cpp-enhanced-highlight'
 "GLSL
-Plugin 'tikhomirov/vim-glsl'
+Plug 'tikhomirov/vim-glsl'
 " latex
-Plugin 'lervag/vimtex'
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-"Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
-" Git plugin not hosted on GitHub
-"Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-"Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-" Plugin 'ascenator/L9', {'name': 'newL9'}
+Plug 'lervag/vimtex'
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
+call plug#end()
+
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
@@ -71,6 +44,20 @@ function! HasPaste()
     return ''
 endfunction
 
+
+set clipboard+=unnamedplus
+" " Copy to clipboard
+vnoremap  <leader>y  "+y
+nnoremap  <leader>Y  "+yg_
+nnoremap  <leader>y  "+y
+nnoremap  <leader>yy  "+yy
+
+" " Paste from clipboard
+nnoremap <leader>p "+p
+nnoremap <leader>P "+P
+vnoremap <leader>p "+p
+vnoremap <leader>P "+P
+
 "python with virtualenv support
 py << EOF
 import os
@@ -80,6 +67,8 @@ if 'VIRTUAL_ENV' in os.environ:
   activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
   execfile(activate_this, dict(__file__=activate_this))
 EOF
+
+
 
 
 " use <tab> for trigger completion and navigate to the next complete item
@@ -96,7 +85,6 @@ inoremap <silent><expr> <Tab>
 set laststatus=2
 "set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
 
-map <C-n> :NERDTreeToggle<CR>
 map <C-h> :set hlsearch!<CR>
 
 "nnoremap <C-Left> :tabprevious<CR>
@@ -235,13 +223,4 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-
-" airline
-let g:airline_theme='deus'
-let g:airline_powerline_fonts = 1
-"let g:airline_symbols.space = "\ua0"
-let g:airline_skip_empty_sections = 1
-" let timeoutlen = 10
-
-let g:airline#extensions#tabline#enabled = 1
 
