@@ -44,6 +44,22 @@ function! HasPaste()
     return ''
 endfunction
 
+" Applying codeAction to the selected region.
+
+" Example: \`<leader>aap\` for current paragraph
+
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+
+" My config
+
+" Remap keys for applying codeAction to the current word.
+
+" I add w mean select current word for codeaction.
+
+nmap <leader>ac   <Plug>(coc-codeaction-selected)w
 
 if system('uname -s') == "Darwin\n"
   set clipboard=unnamed "OSX
