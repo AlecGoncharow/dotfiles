@@ -1,4 +1,30 @@
 set nocompatible              " be iMproved, required
+" PYTHON PROVIDERS {{{
+
+if has('macunix')
+
+" OSX
+
+let g:python3_host_prog = '/usr/bin/python3' " -- Set python 3 provider
+
+" let g:python_host_prog = '/usr/bin/python2' " --- Set python 2 provider
+
+elseif has('unix')
+
+" Ubuntu
+
+let g:python3_host_prog = '/usr/bin/python3' " -------- Set python 3 provider
+
+" let g:python_host_prog = '/usr/bin/python' " ---------- Set python 2 provider
+
+elseif has('win32') || has('win64')
+
+" Window
+
+endif
+
+" }}}
+
 " auto-install vim-plug                                                                                                                
 if empty(glob('~/.config/nvim/autoload/plug.vim'))                                                                                    
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \                                                                  
@@ -18,7 +44,7 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'tikhomirov/vim-glsl'
 " latex
 Plug 'lervag/vimtex'
-
+Plug 'morhetz/gruvbox'
 call plug#end()
 
 filetype plugin indent on    " required
@@ -34,6 +60,7 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 "
+colorscheme gruvbox
 
 hi clear SignColumn
 
@@ -45,12 +72,7 @@ function! HasPaste()
 endfunction
 
 
-if system('uname -s') == "Darwin\n"
-  set clipboard=unnamed "OSX
-else
-  set clipboard=unnamedplus "Linux
-endif
-
+set clipboard+=unnamedplus
 " " Copy to clipboard
 vnoremap  <leader>y  "+y
 nnoremap  <leader>Y  "+yg_
@@ -64,7 +86,7 @@ vnoremap <leader>p "+p
 vnoremap <leader>P "+P
 
 "python with virtualenv support
-py << EOF
+py3 << EOF
 import os
 import sys
 if 'VIRTUAL_ENV' in os.environ:
@@ -202,7 +224,7 @@ highlight LineNr ctermfg=grey
 
 let python_highlight_all=1
 syntax on
-highlight Pmenu ctermfg=cyan ctermbg=black
+" highlight Pmenu ctermfg=cyan ctermbg=black
 
 let g:ycm_python_binary_path = 'python'
 let g:ycm_server_python_interpreter = '/usr/bin/python'
@@ -229,4 +251,3 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-let g:tex_flavor='latex'
