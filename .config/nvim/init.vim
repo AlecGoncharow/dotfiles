@@ -36,6 +36,8 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " rust lang
 Plug 'rust-lang/rust.vim'
+" go
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " syntastic
 Plug 'vim-syntastic/syntastic'
 "C++ Highlighting
@@ -71,6 +73,8 @@ function! HasPaste()
     return ''
 endfunction
 
+let mapleader = " " " map leader to Space
+
 " Applying codeAction to the selected region.
 
 " Example: \`<leader>aap\` for current paragraph
@@ -78,6 +82,31 @@ endfunction
 xmap <leader>a  <Plug>(coc-codeaction-selected)
 
 nmap <leader>a  <Plug>(coc-codeaction-selected)
+"
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
 
 
 " My config
@@ -124,6 +153,9 @@ inoremap <silent><expr> <Tab>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<Tab>" :
       \ coc#refresh()
+
+" use <c-space>for trigger completion
+inoremap <silent><expr> <c-space> coc#refresh()
 
 set laststatus=2
 "set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
@@ -198,12 +230,21 @@ hi User5 ctermfg=238 ctermbg=233
 
 "------------Start Python PEP 8 stuff----------------
 " Number of spaces that a pre-existing tab is equal to.
-au BufRead,BufNewFile *.html,*py,*pyw,*.c,*.h,*.js,*.tex,*.glsl,*.java,*.ts,*.tsx,*.c,*.cpp,*.h,*.hpp set tabstop=4
+"au BufRead,BufNewFile *.go,*.html,*py,*pyw,*.c,*.h,*.js,*.tex,*.glsl,*.java,*.ts,*.tsx,*.c,*.cpp,*.h,*.hpp set tabstop=4
 
 "spaces for indents
-au BufRead,BufNewFile *.html,*.py,*.pyw,*.js,*.tex,*.glsl,*.java,*.ts,*.tsx,*.c,*.cpp,*.h,*.hpp set shiftwidth=4
-au BufRead,BufNewFile *.html,*.py,*.pyw,*.js,*.tex,*.glsl,*.java,*.ts,*.tsx,*.c,*.cpp,*.h,*.hpp set expandtab
-au BufRead,BufNewFile *.html,*.py,*.js,*.tex,*.glsl,*.java,*.ts,*.tsx,*.c,*.cpp,*.h,*.hpp set softtabstop=4
+"au BufRead,BufNewFile *.go,*.html,*.py,*.pyw,*.js,*.tex,*.glsl,*.java,*.ts,*.tsx,*.c,*.cpp,*.h,*.hpp set shiftwidth=4
+"au BufRead,BufNewFile *.go,*.html,*.py,*.pyw,*.js,*.tex,*.glsl,*.java,*.ts,*.tsx,*.c,*.cpp,*.h,*.hpp set expandtab
+"au BufRead,BufNewFile *.go,*.html,*.py,*.js,*.tex,*.glsl,*.java,*.ts,*.tsx,*.c,*.cpp,*.h,*.hpp set softtabstop=4
+
+au BufRead,BufNewFile * set tabstop=4
+au BufRead,BufNewFile * set shiftwidth=4
+au BufRead,BufNewFile * set expandtab
+au BufRead,BufNewFile * set softtabstop=4
+
+au BufRead,BufNewFile *.yaml set tabstop=2
+au BufRead,BufNewFile *.yaml set shiftwidth=2
+au BufRead,BufNewFile *.yaml set softtabstop=2
 
 " Use the below highlight group when displaying bad whitespace is desired.
 highlight BadWhitespace ctermbg=red guibg=red
