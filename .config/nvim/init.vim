@@ -1,30 +1,4 @@
 set nocompatible              " be iMproved, required
-" PYTHON PROVIDERS {{{
-
-if has('macunix')
-
-" OSX
-
-let g:python3_host_prog = '/usr/bin/python3' " -- Set python 3 provider
-
-" let g:python_host_prog = '/usr/bin/python2' " --- Set python 2 provider
-
-elseif has('unix')
-
-" Ubuntu
-
-let g:python3_host_prog = '/usr/bin/python3' " -------- Set python 3 provider
-
-" let g:python_host_prog = '/usr/bin/python' " ---------- Set python 2 provider
-
-elseif has('win32') || has('win64')
-
-" Window
-
-endif
-
-" }}}
-
 " auto-install vim-plug                                                                                                                
 if empty(glob('~/.config/nvim/autoload/plug.vim'))                                                                                    
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \                                                                  
@@ -46,7 +20,17 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'tikhomirov/vim-glsl'
 " latex
 Plug 'lervag/vimtex'
+
 Plug 'morhetz/gruvbox'
+
+Plug 'nikvdp/ejs-syntax'
+
+Plug 'pangloss/vim-javascript'
+
+" Plug 'leafOfTree/vim-vue-plugin'
+
+Plug 'posva/vim-vue'
+
 call plug#end()
 
 filetype plugin indent on    " required
@@ -62,6 +46,7 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 "
+
 colorscheme gruvbox
 
 hi clear SignColumn
@@ -73,10 +58,10 @@ function! HasPaste()
     return ''
 endfunction
 
-let mapleader = " " " map leader to Space
+let mapleader=" "
+nnoremap <SPACE> <Nop>
 
-" Applying codeAction to the selected region.
-
+autocmd CursorHold * silent call CocActionAsync('highlight')
 " Example: \`<leader>aap\` for current paragraph
 
 xmap <leader>a  <Plug>(coc-codeaction-selected)
@@ -131,7 +116,7 @@ vnoremap <leader>p "+p
 vnoremap <leader>P "+P
 
 "python with virtualenv support
-py3 << EOF
+py << EOF
 import os
 import sys
 if 'VIRTUAL_ENV' in os.environ:
@@ -282,14 +267,6 @@ highlight LineNr ctermfg=grey
 let python_highlight_all=1
 syntax on
 " highlight Pmenu ctermfg=cyan ctermbg=black
-
-let g:ycm_python_binary_path = 'python'
-let g:ycm_server_python_interpreter = '/usr/bin/python'
-let g:ycm_autoclose_preview_window_after_completion=1
-let g:ycm_collect_identifiers_from_comments_and_strings=1
-let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
-set backspace=indent,eol,start
-
 " Rust
 let g:rustfmt_autosave = 1
 "let g:ycm_rust_src_path = '~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/'
@@ -308,3 +285,7 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+" tex
+let g:tex_flavor = 'latex'
+
+let g:vim_vue_plugin_load_full_syntax = 1
