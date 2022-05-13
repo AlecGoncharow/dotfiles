@@ -1,4 +1,30 @@
 set nocompatible              " be iMproved, required
+" PYTHON PROVIDERS {{{
+
+if has('macunix')
+
+" OSX
+
+let g:python3_host_prog = '/usr/bin/python3' " -- Set python 3 provider
+
+" let g:python_host_prog = '/usr/bin/python2' " --- Set python 2 provider
+
+elseif has('unix')
+
+" Ubuntu
+
+let g:python3_host_prog = '/usr/bin/python3' " -------- Set python 3 provider
+
+" let g:python_host_prog = '/usr/bin/python' " ---------- Set python 2 provider
+
+elseif has('win32') || has('win64')
+
+" Window
+
+endif
+
+" }}}
+
 " auto-install vim-plug                                                                                                                
 if empty(glob('~/.config/nvim/autoload/plug.vim'))                                                                                    
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \                                                                  
@@ -20,16 +46,15 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'tikhomirov/vim-glsl'
 " latex
 Plug 'lervag/vimtex'
-
 Plug 'morhetz/gruvbox'
 
-Plug 'nikvdp/ejs-syntax'
+Plug 'psliwka/vim-smoothie'
 
-Plug 'pangloss/vim-javascript'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
-" Plug 'leafOfTree/vim-vue-plugin'
+Plug 'edkolev/tmuxline.vim'
 
-Plug 'posva/vim-vue'
 
 call plug#end()
 
@@ -46,10 +71,11 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 "
-
 colorscheme gruvbox
 
 hi clear SignColumn
+
+set textwidth=80
 
 function! HasPaste()
     if &paste
@@ -58,13 +84,15 @@ function! HasPaste()
     return ''
 endfunction
 
-let mapleader=" "
-nnoremap <SPACE> <Nop>
+let mapleader = " " " map leader to Space
 
-autocmd CursorHold * silent call CocActionAsync('highlight')
+" Applying codeAction to the selected region.
+
 " Example: \`<leader>aap\` for current paragraph
 
 xmap <leader>a  <Plug>(coc-codeaction-selected)
+
+
 
 nmap <leader>a  <Plug>(coc-codeaction-selected)
 "
@@ -116,7 +144,7 @@ vnoremap <leader>p "+p
 vnoremap <leader>P "+P
 
 "python with virtualenv support
-py << EOF
+py3 << EOF
 import os
 import sys
 if 'VIRTUAL_ENV' in os.environ:
@@ -267,6 +295,14 @@ highlight LineNr ctermfg=grey
 let python_highlight_all=1
 syntax on
 " highlight Pmenu ctermfg=cyan ctermbg=black
+
+let g:ycm_python_binary_path = 'python'
+let g:ycm_server_python_interpreter = '/usr/bin/python'
+let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_collect_identifiers_from_comments_and_strings=1
+let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+set backspace=indent,eol,start
+
 " Rust
 let g:rustfmt_autosave = 1
 "let g:ycm_rust_src_path = '~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/'
@@ -282,10 +318,16 @@ set statusline+=%*
 nnoremap <C-e> :SyntasticReset<CR>
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
-" tex
-let g:tex_flavor = 'latex'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1 
 
-let g:vim_vue_plugin_load_full_syntax = 1
+let g:go_fmt_command = "gofmt"
+
+let g:smoothie_experimental_mappings = 1
+
+let g:airline_theme='base16_gruvbox_dark_hard'
+
+
