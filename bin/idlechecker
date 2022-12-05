@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# xss-lock -- ./pretty-lock &
+swayidle -w \
+	timeout 300 '~/bin/pretty-lock' \
+    before-sleep '~/bin/pretty-lock'

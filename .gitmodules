@@ -1,6 +1,0 @@
-[submodule ".config/i3blocks/i3blocks-cmus"]
-	path = .config/i3blocks/i3blocks-cmus
-	url = https://github.com/AlecGoncharow/i3blocks-cmus.git
-[submodule "rofi"]
-	path = rofi
-	url = https://github.com/adi1090x/rofi
