@@ -61,6 +61,7 @@ let-env NU_PLUGIN_DIRS = [
 
 # Wayland things
 let-env MOZ_ENABLE_WAYLAND = 1
+let-env SSH_AUTH_SOCK = $"($env.XDG_RUNTIME_DIR)/ssh-agent.socket"
 
 # To add entries to PATH (on Windows you might use Path), you can use the following pattern:
 
