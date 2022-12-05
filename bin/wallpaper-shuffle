@@ -2,10 +2,11 @@
 let wallpapers_path = "~/wallpapers/low-poly"
 swaymsg -t get_outputs | 
     rg name | 
-    split row "\n" | 
+    str trim -a |
+    split row "," | 
     split column ":" | 
     get column2 | 
-    str trim | str trim -c "," | str trim -c '"' |
+    str trim | str trim -c '"' |
     each {|output|
         swaymsg $"output ($output) bg `find ($wallpapers_path) -type f | shuf -n 1` fill"
     }
