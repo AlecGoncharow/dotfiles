@@ -194,7 +194,8 @@ exec_always --no-startup-id dunst
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec ~/bin/idlechecker
 
-exec  nm-applet --indicator
+exec nm-applet --indicator
+exec blueman-applet
 
 #############################
 ### settings for i3-gaps: ###
@@ -212,15 +213,17 @@ bar {
 
 # Set inner/outer gaps
 default_border none
+default_floating_border none
 gaps inner 10
 gaps outer 0
+titlebar_border_thickness 0
 
 # A lock command used in several places
-set $lock_script ~/bin/pretty-lock
+# set $lock_script ~/bin/pretty-lock
 
 # A sleep command used in several places.
 # We leave a bit of time for locking to happen before putting the system to sleep
-set $sleep $lock_script && sleep 3 && systemctl suspend
+# set $sleep $lock_script && sleep 3 && systemctl suspend
 
 # Triggers a short notification
 set $notify dunstify --timeout 1500
@@ -240,18 +243,18 @@ workspace 2 output eDP-1 DP-3 DP-4
 bindsym --release Print exec grim -g "$(slurp)" -t png - | wl-copy -t image/png
 
 # Sway display things 
-output DP-4 {
+output 'LG Electronics LG ULTRAGEAR 107NTDVCR242' {
 	position 0,0
 	scale 1.0
 }
  
-output DP-3 {
+output 'Dell Inc. DELL P2723QE 3940MP3' {
 	position 2560,0
 	scale 1.5
 }
 
 output eDP-1 {
-	position 5120,0
+	position 0,0
  	scale 1.25 
 }
 
@@ -266,7 +269,7 @@ input type:touchpad {
 
 
 input type:keyboard {
-  # Capslock key should work as escape key
+  # Capslock key should work as control key
   # See /usr/share/X11/xkb/rules/xorg.lst for options
   xkb_options caps:ctrl_modifier
 

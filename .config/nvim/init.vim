@@ -29,6 +29,9 @@ Plug 'vim-airline/vim-airline-themes'
 
 Plug 'edkolev/tmuxline.vim'
 
+" make searching less annoying
+Plug 'romainl/vim-cool'
+
 " :)
 Plug 'jasonccox/vim-wayland-clipboard'
 Plug 'lambdalisue/suda.vim'
@@ -54,6 +57,7 @@ colorscheme gruvbox
 hi clear SignColumn
 
 set textwidth=80
+au BufRead,BufNewFile *.html,*.py,*.json,*.yaml set textwidth=0
 
 set clipboard+=unnamedplus
 " " Copy to clipboard
