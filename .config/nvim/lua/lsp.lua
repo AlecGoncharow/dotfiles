@@ -43,5 +43,10 @@ require("rust-tools").setup({
 })
 
 
+-- close quickfix menu after selecting choice
+vim.api.nvim_create_autocmd(
+  "FileType", {
+  pattern={"qf"},
+  command=[[nnoremap <buffer> <CR> <CR>:cclose<CR>]]})
 -- local autocmd = vim.api.nvim_create_autocmd
 -- autocmd({ "BufLeave" }, { pattern = { "*" }, command = "if &buftype == 'quickfix'|q|endif" })

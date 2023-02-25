@@ -1,6 +1,14 @@
+vim.cmd([[
+  syntax enable
+  filetype plugin indent on
+]])
+
 HOME = os.getenv("HOME")
 
 vim.g.mapleader = ' '
+
+vim.wo.cursorline = true
+vim.opt.termguicolors = true
 
 -- basic settings
 vim.o.encoding = "utf-8"
@@ -25,9 +33,11 @@ vim.o.list = false -- do not display white characters
 vim.o.foldenable = false
 vim.o.foldlevel = 4 -- limit folding to 4 levels
 vim.o.foldmethod = 'syntax' -- use language syntax to generate folds
-vim.o.wrap = false --do not wrap lines even if very long
-vim.o.eol = false -- show if there's no eol char
+vim.o.wrap = true --do not wrap lines even if very long
+vim.o.eol = true -- show if there's no eol char
 vim.o.showbreak= '↪' -- character to show when line is broken
+
+vim.opt.clipboard = 'unnamedplus'
 
 -- Sidebar
 vim.o.number = true -- line number on the left
@@ -61,8 +71,6 @@ vim.o.backupdir = HOME .. '/.vim/tmp/backup//' -- backups
 vim.o.directory = '/.vim/tmp/swap//'   -- swap files
 
 vim.cmd([[
-
-
   au FileType python                  set ts=4 sw=4
   au BufRead,BufNewFile *.md          set ft=mkd tw=80 syntax=markdown
   au BufRead,BufNewFile *.ppmd        set ft=mkd tw=80 syntax=markdown
@@ -86,3 +94,13 @@ hi EndOfBuffer guibg=none ctermbg=none
 -- Commands mode
 vim.o.wildmenu = true -- on TAB, complete options for system command
 vim.o.wildignore = 'deps,.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,.DS_Store,*.aux,*.out,*.toc'
+
+-- https://sharksforarms.dev/posts/neovim-rust/
+local format_sync_grp = vim.api.nvim_create_augroup("Format", {})
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*.rs",
+  callback = function()
+    vim.lsp.buf.format({ timeout_ms = 200 })
+  end,
+  group = format_sync_grp,
+})

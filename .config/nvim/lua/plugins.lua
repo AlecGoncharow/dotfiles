@@ -4,7 +4,7 @@ return require('packer').startup(function()
   use 'wbthomason/packer.nvim'
 
   use 'morhetz/gruvbox'
-  use 'psliwka/vim-smoothie'
+  use 'karb94/neoscroll.nvim'
   use 'edkolev/tmuxline.vim'
   use 'romainl/vim-cool'
 
@@ -19,6 +19,8 @@ return require('packer').startup(function()
   use 'rhysd/git-messenger.vim'
 
 
+  use 'luochen1990/rainbow'
+  use 'RRethy/vim-illuminate'
   -- better quickfix buffer
   use {'kevinhwang91/nvim-bqf',
   ft = 'qf',
@@ -26,7 +28,6 @@ return require('packer').startup(function()
     require("bqf").setup {
       -- your configuration comes here
       -- or leave it empty to use the default settings
-      -- refer to the configuration section below
     }
   end
   }
@@ -35,7 +36,18 @@ return require('packer').startup(function()
   -- general dev
   use 'neovim/nvim-lspconfig'
   use 'kabouzeid/nvim-lspinstall'
-  use 'glepnir/lspsaga.nvim'
+  use({
+    "glepnir/lspsaga.nvim",
+    branch = "main",
+    config = function()
+        require("lspsaga").setup({})
+    end,
+    requires = {
+        {"nvim-tree/nvim-web-devicons"},
+        --Please make sure you install markdown and markdown_inline parser
+        {"nvim-treesitter/nvim-treesitter"}
+    }
+})
   use 'hrsh7th/nvim-cmp'
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-nvim-lua'
@@ -53,7 +65,6 @@ return require('packer').startup(function()
     require("which-key").setup {
       -- your configuration comes here
       -- or leave it empty to use the default settings
-      -- refer to the configuration section below
     }
   end
 }
@@ -69,7 +80,7 @@ return require('packer').startup(function()
   use 'fatih/vim-go'
 
   -- rust
-  use 'rust-lang/rust.vim'
+  use 'rust-lang/rust.vim'  
   use 'simrat39/rust-tools.nvim'  
 
   -- debugging
