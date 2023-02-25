@@ -32,7 +32,7 @@ return require('packer').startup(function()
   end
   }
 
-  
+
   -- general dev
   use 'neovim/nvim-lspconfig'
   use 'kabouzeid/nvim-lspinstall'
@@ -80,8 +80,8 @@ return require('packer').startup(function()
   use 'fatih/vim-go'
 
   -- rust
-  use 'rust-lang/rust.vim'  
-  use 'simrat39/rust-tools.nvim'  
+  use 'rust-lang/rust.vim'
+  use 'simrat39/rust-tools.nvim'
 
   -- debugging
   use 'nvim-lua/plenary.nvim'
