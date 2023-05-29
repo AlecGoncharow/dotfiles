@@ -39,14 +39,55 @@ require("rust-tools").setup({
 	server = {
 		capabilities = capabilities,
 		on_attach = on_attach,
+    settings = {
+      ['rust-analyzer'] = {
+        cargo = {
+          features = "all"
+        }
+      }
+    }
 	}
 })
 
+-- https://github.com/ray-x/go.nvim#lsp-cmp-support
+require('go').setup({
+  lsp_cfg = {
+    capabilities = capabilities,
+    on_attach = on_attach
+  }
+})
+
+-- https://github.com/nikeee/dot-language-server
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#dotls
+require("lspconfig")['dotls'].setup({
+	server = {
+		capabilities = capabilities,
+		on_attach = on_attach,
+	}
+})
+
+
+require('lspconfig').yamlls.setup{
+  settings = {
+    yaml = {
+      -- FIX mapKeyOrder warning
+      keyOrdering = false,
+    },
+  }
+}
 
 -- close quickfix menu after selecting choice
 vim.api.nvim_create_autocmd(
   "FileType", {
   pattern={"qf"},
   command=[[nnoremap <buffer> <CR> <CR>:cclose<CR>]]})
+
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = '*.go',
+  callback = function()
+    vim.lsp.buf.code_action({ context = { only = { 'source.organizeImports' } }, apply = true })
+  end
+})
+
 -- local autocmd = vim.api.nvim_create_autocmd
 -- autocmd({ "BufLeave" }, { pattern = { "*" }, command = "if &buftype == 'quickfix'|q|endif" })

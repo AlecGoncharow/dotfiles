@@ -54,7 +54,9 @@ return require('packer').startup(function()
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-nvim-lsp-signature-help'
   use "hrsh7th/cmp-path"
-  use 'L3MON4D3/LuaSnip'
+  use 'hrsh7th/cmp-vsnip'
+  use 'hrsh7th/vim-vsnip'
+
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   use 'scrooloose/nerdcommenter' -- commenting shortcuts
   use {
@@ -77,13 +79,22 @@ return require('packer').startup(function()
   use 'kyazdani42/nvim-web-devicons' -- icons when searching
 
   -- go
-  use 'fatih/vim-go'
+  use 'ray-x/go.nvim'
 
   -- rust
   use 'rust-lang/rust.vim'
   use 'simrat39/rust-tools.nvim'
 
+  -- ember
+  use 'joukevandermaas/vim-ember-hbs'
+
   -- debugging
   use 'nvim-lua/plenary.nvim'
   use 'mfussenegger/nvim-dap'
+
+  use { "johmsalas/text-case.nvim",
+  config = function()
+    require('textcase').setup {}
+  end
+}
 end)
