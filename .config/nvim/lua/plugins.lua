@@ -78,6 +78,9 @@ return require('packer').startup(function()
   use 'tpope/vim-vinegar' -- file browser
   use 'kyazdani42/nvim-web-devicons' -- icons when searching
 
+  -- zig
+  use 'ziglang/zig.vim'
+
   -- go
   use 'ray-x/go.nvim'
 

@@ -56,10 +56,17 @@ require('go').setup({
     on_attach = on_attach
   }
 })
+local lspconfig = require('lspconfig')
+
+lspconfig.zls.setup({
+	server = {
+		on_attach = on_attach,
+	}
+})
 
 -- https://github.com/nikeee/dot-language-server
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#dotls
-require("lspconfig")['dotls'].setup({
+lspconfig['dotls'].setup({
 	server = {
 		capabilities = capabilities,
 		on_attach = on_attach,
@@ -67,7 +74,7 @@ require("lspconfig")['dotls'].setup({
 })
 
 
-require('lspconfig').yamlls.setup{
+lspconfig.yamlls.setup{
   settings = {
     yaml = {
       -- FIX mapKeyOrder warning

@@ -128,4 +128,7 @@ for key ('j') bindkey -M vicmd ${key} history-substring-search-down
 unset key
 # }}} End configuration added by Zim install
 
-eval "$(starship init zsh)"
+
+alias cat=bat
+alias find=fd
+export PATH=~/.zig/bin:$PATH
