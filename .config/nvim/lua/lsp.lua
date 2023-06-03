@@ -59,18 +59,15 @@ require('go').setup({
 local lspconfig = require('lspconfig')
 
 lspconfig.zls.setup({
-	server = {
-		on_attach = on_attach,
-	}
+  on_attach = on_attach,
+  capabilities = capabilities,
 })
 
 -- https://github.com/nikeee/dot-language-server
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#dotls
 lspconfig['dotls'].setup({
-	server = {
-		capabilities = capabilities,
-		on_attach = on_attach,
-	}
+  capabilities = capabilities,
+  on_attach = on_attach,
 })
 
 
