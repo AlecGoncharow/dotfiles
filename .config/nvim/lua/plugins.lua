@@ -8,6 +8,8 @@ return require('packer').startup(function()
   use 'edkolev/tmuxline.vim'
   use 'romainl/vim-cool'
 
+  use 'lambdalisue/suda.vim'
+
   -- common
   use 'tpope/vim-fugitive' -- Git commands
   use {

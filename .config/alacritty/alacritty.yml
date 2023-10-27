@@ -22,3 +22,5 @@ font:
     # style: Italic
 window:
     opacity: 0.75
+key_bindings:
+  - { key: Return,   mods: Alt|Shift, action: SpawnNewInstance }

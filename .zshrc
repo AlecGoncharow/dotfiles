@@ -131,4 +131,10 @@ unset key
 
 alias cat=bat
 alias find=fd
-export PATH=~/.zig/bin:$PATH
+export PATH=~/bin:$PATH
+export PATH=~/.local/bin:$PATH
+
+if [[ -f "$HOME/.zig/env" ]]; then
+  source ~/.zig/env
+fi
+

@@ -10,6 +10,8 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 # Read `man 5 sway` for a complete reference.
 
+include /etc/sway/config.d/*
+
 set $mod Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -196,6 +198,9 @@ exec ~/bin/idlechecker
 
 exec nm-applet --indicator
 exec blueman-applet
+# for flatpaks (like obs) https://github.com/emersion/xdg-desktop-portal-wlr#running
+exec_always systemctl --user import-environment XDG_DISPLAY XDG_CURRENT_DESKTOP
+exec_always dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
 #############################
 ### settings for i3-gaps: ###
@@ -212,11 +217,21 @@ bar {
 }
 
 # Set inner/outer gaps
-default_border none
-default_floating_border none
 gaps inner 10
 gaps outer 0
-titlebar_border_thickness 0
+
+for_window {
+  [class="firefox"] border none
+  [window_role="pop-up"] floating enable
+  [window_role="bubble"] floating enable
+  [window_role="dialog"] floating enable
+  [window_type="dialog"] floating enable
+}
+
+#client.<class> <border> <background> <text> <indicator> <child_border>
+client.focused "#d0f0c0" "#d0f0c0" "#2b2b2b" "#888888" "#000000"
+client.focused_inactive "#23242a" "#2b2b2b" "#888888" "#000000" "#000000"
+client.unfocused "#2c2c2c" "#2b2b2b" "#888888" "#000000" "#000000"
 
 # A lock command used in several places
 # set $lock_script ~/bin/pretty-lock
@@ -237,25 +252,25 @@ bindswitch --reload --locked lid:on exec '[ $(swaymsg -t get_outputs | grep name
 exec_always ~/bin/clamshell-toggle
 
 bindswitch --reload --locked lid:off output $laptop_screen enable
-workspace 1 output DP-4 DP-3 eDP-1
-workspace 2 output eDP-1 DP-3 DP-4
+workspace 1 output 'LG Electronics LG ULTRAGEAR 107NTDVCR242' eDP-1
+workspace 2 output 'Dell Inc. DELL P2723QE 3940MP3' eDP-1
 
 bindsym --release Print exec grim -g "$(slurp)" -t png - | wl-copy -t image/png
 
-# Sway display things 
+# Sway display things
 output 'LG Electronics LG ULTRAGEAR 107NTDVCR242' {
-	position 0,0
+	position 2560,0
 	scale 1.0
 }
- 
+
 output 'Dell Inc. DELL P2723QE 3940MP3' {
-	position 2560,0
+	position 0,0
 	scale 1.5
 }
 
 output eDP-1 {
 	position 0,0
- 	scale 1.25 
+ 	scale 1.25
 }
 
 input type:touchpad {

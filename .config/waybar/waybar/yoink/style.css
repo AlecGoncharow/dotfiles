@@ -1,5 +1,5 @@
 /*
- * Tea green
+ * Tea green 
  * https://en.wikipedia.org/wiki/Shades_of_green#Tea_green
  */
 @define-color highlight rgba(208, 240, 192, 0.4);
@@ -142,7 +142,6 @@ window#waybar {
 }
 
 #battery {
-  /*background-color: #FF8000;*/
   padding-right: 20px;
 }
 
@@ -175,7 +174,7 @@ button:hover {
 /*-----Colors----*/
 /*
  *rgba(0,85,102,1),#005566 --> Indigo(dye)
- *rgba(0,43,51,1),#002B33 --> Dark Green
- *rgba(0,153,153,1),#009999 --> Persian Green
+ *rgba(0,43,51,1),#002B33 --> Dark Green 
+ *rgba(0,153,153,1),#009999 --> Persian Green 
  *
  */

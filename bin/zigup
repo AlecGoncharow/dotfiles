@@ -1,0 +1,183 @@
+#!/usr/bin/env bash
+
+set -o errexit
+set -o nounset
+set -o pipefail
+if [[ "${TRACE-0}" == "1" ]]; then
+    set -o xtrace
+fi
+
+zig_root="$HOME/.zig"
+
+prompt_confirm() {
+  while true; do
+    read -r -n 1 -p "${1:-Continue?} [y/n]: " REPLY
+    case $REPLY in
+      [yY]) echo ; return 0 ;;
+      [nN]) echo ; return 1 ;;
+      *) printf " \033[31m %s \n\033[0m" "invalid input"
+    esac
+  done
+}
+
+
+help() {
+    echo "Usage: $0
+
+    Install/update zig and zls under ~/.zig
+
+"
+    exit
+}
+
+install_zig() {
+    arch="x86_64-linux"
+    zig_master_arch_json="$(jq -r ".\"$arch\"" <<< "$zig_master_json")"
+    zig_master_tarball="$(jq -r '.tarball' <<< "$zig_master_arch_json")"
+    zig_master_shasum="$(jq -r '.shasum' <<< "$zig_master_arch_json")"
+    zig_master_size="$(jq -r '.size' <<< "$zig_master_arch_json")"
+
+    echo "$zig_master_tarball"
+    echo "$zig_master_shasum"
+    echo "$zig_master_size"
+
+    if [ ! -d "$zig_root/tmp" ]; then
+      mkdir "$zig_root/tmp"
+    fi
+
+    echo "fetching tarball"
+    zig_tarball_path="$zig_root/tmp/zig.tar"
+    wget -O "$zig_root/tmp/zig.tar" "$zig_master_tarball"
+
+    if ! echo "$zig_master_shasum $zig_tarball_path" | sha256sum --check; then
+      echo "invalid tarball; bailing"
+      exit 1
+    fi
+
+    echo "extracting tarball"
+
+    if [ ! -d "$zig_root/zig" ]; then
+      mkdir "$zig_root/zig"
+    fi
+
+   if ! tar -xf "$zig_tarball_path" -C "$zig_root/zig" --strip-components=1 ; then
+     echo "extraction failed; bailing"
+     exit 1
+   fi
+
+   echo "zig installed"
+    zig version
+}
+
+install_zls() {
+   zls_path="$zig_root/zls"
+   if [ ! -d "$zls_path" ]; then
+     echo "cloning zls"
+     git clone https://github.com/zigtools/zls.git "$zls_path"
+   fi
+   cd "$zls_path"
+   echo "pulling zls"
+   git pull
+   echo "building zls"
+   zig build -Doptimize=ReleaseSafe
+
+    if [ ! -d "$zig_root/bin" ]; then
+      mkdir "$zig_root/bin"
+    fi
+
+    cp "$zls_path/zig-out/bin/zls" "$zig_root/bin"
+    echo "zls installed"
+    zls --version
+}
+
+if [[ "${1-}" =~ ^-*h(elp)?$ ]]; then
+    help
+fi
+
+cd "$(dirname "$0")"
+
+main() {
+    force=0
+    while getopts "f" o; do
+      case "${o}" in
+        f)
+          force=1
+          ;;
+        *)
+          echo "invalid flag"
+          help
+          ;;
+      esac
+    done
+
+    if [ ! -d "$zig_root" ]; then
+      echo "initalizing zig directory"
+      mkdir "$zig_root"
+      # shellcheck disable=SC2016
+      echo '#!/bin/sh
+# zigup shell setup
+# affix colons on either side of $PATH to simplify matching
+case ":${PATH}:" in
+    *:"$HOME/.zig/bin":*)
+        ;;
+    *)
+        # Prepending path in case a system-installed rustc needs to be overridden
+        export PATH='"$zig_root/"'bin:"$PATH"
+        ;;
+esac
+case ":${PATH}:" in
+    *:"$HOME/.zig/zig":*)
+        ;;
+    *)
+        # Prepending path in case a system-installed rustc needs to be overridden
+        export PATH='"$zig_root/"'zig:"$PATH"
+        ;;
+esac
+' > "$zig_root/env"
+      echo "add \`source $zig_root/env\` to your shell config"
+    fi
+    # shellcheck source=/dev/null
+    source "$zig_root/env"
+
+    zig_json_path="$zig_root/index.json"
+    if [ ! -f "$zig_json_path" ]; then
+      echo "initalizing index.json"
+      curl -s https://ziglang.org/download/index.json > "$zig_json_path"
+    fi
+    json_ttl="600"
+    seconds_since_fetch=$(($(date +%s) - $(date -r "$zig_json_path" +%s)))
+    if [ "$json_ttl" -lt "$seconds_since_fetch" ]; then
+      echo "fetching fresh index.json"
+      curl -s https://ziglang.org/download/index.json >| "$zig_json_path"
+    else
+      echo "using cached index.json"
+    fi
+
+    zig_master_json="$(jq '.master' "$zig_json_path")"
+    zig_master_version="$(jq -r '.version' <<< "$zig_master_json")"
+
+    if command -v zig &> /dev/null; then
+      installed_zig_version="$(zig version)"
+    else
+      installed_zig_version="no zig installed"
+    fi
+
+    echo $force
+    if [[ ! $force && "$installed_zig_version" == "$zig_master_version" ]]; then
+      echo "zig up to date,"
+      exit 0
+    else
+      echo "zig upgrade avaliable: $installed_zig_version -> $zig_master_version"
+      if prompt_confirm "Proceed?"; then
+        install_zig
+      fi
+    fi
+
+   if prompt_confirm "build ZLS?"; then
+     install_zls
+   fi
+
+}
+
+main "$@"
+
