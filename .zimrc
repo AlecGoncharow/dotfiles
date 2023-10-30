@@ -18,6 +18,9 @@ zmodule input
 zmodule termtitle
 # Utility aliases and functions. Adds colour to ls, grep and less.
 zmodule utility
+# All kubectl aliases in one function.
+zmodule k
+
 
 #
 # Completion
@@ -47,6 +50,8 @@ zmodule zsh-users/zsh-autosuggestions
 zmodule exa
 # Configures fzf for faster fetching of files and directories names.
 zmodule fzf
+# Provides a convenient way to load ssh-agent.
+zmodule ssh
 
 
 zmodule joke/zim-starship

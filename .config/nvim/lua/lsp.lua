@@ -71,6 +71,13 @@ lspconfig.bashls.setup({
   capabilities = capabilities,
 })
 
+
+require'lspconfig'.sqlls.setup({
+	server = {
+		on_attach = on_attach,
+	}
+})
+
 -- https://github.com/nikeee/dot-language-server
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#dotls
 lspconfig['dotls'].setup({
