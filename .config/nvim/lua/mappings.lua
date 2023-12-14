@@ -27,14 +27,12 @@ end
 
 
 -- PLUGINS
--- Find files using Telescope command-line sugar.
-nmap("<C-p>", "<cmd>Telescope find_files<cr>")
-nmap("<leader>f", "<cmd>Telescope live_grep<cr>")
-nmap("<leader>bb", "<cmd>Telescope buffers<cr>")
-nmap("<leader>hh", "<cmd>Telescope help_tags<cr>")
+--local builtin = require('telescope.builtin')
+--vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+--vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+--vim.api.nvim_set_keymap( 'n', '<leader>fw', '<cmd>lua require(\'telescope.builtin\').grep_string({search = vim.fn.expand("<cword>")})<cr>', {})
+--vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+--vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 
--- LSP
-nmap('K', '<cmd>Lspsaga hover_doc<cr>')
-imap('<C-k>', '<cmd>Lspsaga hover_doc<cr>')
-nmap('gh', '<cmd>Lspsaga lsp_finder<cr>')
-nmap('<C-e>', '<cmd>Lspsaga show_line_diagnostics<CR>')
+
+

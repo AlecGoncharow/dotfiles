@@ -118,18 +118,16 @@ main() {
 # zigup shell setup
 # affix colons on either side of $PATH to simplify matching
 case ":${PATH}:" in
-    *:"$HOME/.zig/bin":*)
+    *:"'"$zig_root"'/bin":*)
         ;;
     *)
-        # Prepending path in case a system-installed rustc needs to be overridden
         export PATH='"$zig_root/"'bin:"$PATH"
         ;;
 esac
 case ":${PATH}:" in
-    *:"$HOME/.zig/zig":*)
+    *:"'"$zig_root"'/zig":*)
         ;;
     *)
-        # Prepending path in case a system-installed rustc needs to be overridden
         export PATH='"$zig_root/"'zig:"$PATH"
         ;;
 esac
@@ -162,9 +160,8 @@ esac
       installed_zig_version="no zig installed"
     fi
 
-    echo $force
-    if [[ ! $force && "$installed_zig_version" == "$zig_master_version" ]]; then
-      echo "zig up to date,"
+    if [[ $force == 0 && "$installed_zig_version" == "$zig_master_version" ]]; then
+      echo "zig up to date"
       exit 0
     else
       echo "zig upgrade avaliable: $installed_zig_version -> $zig_master_version"

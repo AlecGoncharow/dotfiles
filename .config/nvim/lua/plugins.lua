@@ -79,6 +79,11 @@ return require('packer').startup(function()
   use 'tpope/vim-surround' -- surround characters shortcuts
   use 'tpope/vim-vinegar' -- file browser
   use 'kyazdani42/nvim-web-devicons' -- icons when searching
+  use { "ibhagwan/fzf-lua",
+    -- optional for icon support
+    requires = { "nvim-tree/nvim-web-devicons" }
+  }
+
 
   -- zig
   use 'ziglang/zig.vim'
@@ -96,6 +101,11 @@ return require('packer').startup(function()
   -- debugging
   use 'nvim-lua/plenary.nvim'
   use 'mfussenegger/nvim-dap'
+
+  -- jai
+  use 'rluba/jai.vim'
+
+  use 'wsdjeg/vim-fetch'
 
   use { "johmsalas/text-case.nvim",
   config = function()

@@ -222,6 +222,9 @@ gaps outer 0
 
 for_window {
   [class="firefox"] border none
+  [class="firefox"] border none
+  [app_id="firefox"] border none
+  [class="Godot"] floating enable
   [window_role="pop-up"] floating enable
   [window_role="bubble"] floating enable
   [window_role="dialog"] floating enable

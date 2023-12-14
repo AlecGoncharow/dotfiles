@@ -133,6 +133,10 @@ alias cat=bat
 alias find=fd
 export PATH=~/bin:$PATH
 export PATH=~/.local/bin:$PATH
+export EDITOR=nvim
+
+source ~/functions/zig.sh
+source ~/functions/fzf.sh
 
 if [[ -f "$HOME/.zig/env" ]]; then
   source ~/.zig/env
