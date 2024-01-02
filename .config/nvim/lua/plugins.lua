@@ -102,6 +102,7 @@ return require('packer').startup(function()
 
   -- ember
   use 'joukevandermaas/vim-ember-hbs'
+  use 'joerdav/templ.vim'
 
   -- debugging
   use 'nvim-lua/plenary.nvim'
