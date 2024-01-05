@@ -1,0 +1,25 @@
+[font]
+size = 11.25
+
+[font.bold]
+family = "FiraMono"
+style = "Bold"
+
+[font.italic]
+family = "FiraMono"
+style = "Italic"
+
+[font.normal]
+family = "FiraMono"
+style = "Regular"
+
+[[keyboard.bindings]]
+action = "SpawnNewInstance"
+key = "Return"
+mods = "Alt|Shift"
+
+[window]
+opacity = 0.95
+
+[colors.primary]
+background = "#062625"

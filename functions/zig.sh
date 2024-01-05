@@ -19,6 +19,14 @@ zr () {
  zig build run "$@"
 }
 
+zrf () {
+ zig build run -Doptimize=ReleaseFast "$@"
+}
+
+zrfs () {
+ zig build run -Doptimize=ReleaseFast --summary all "$@"
+}
+
 zrs() {
  zig build run "$@" --summary all
 }
