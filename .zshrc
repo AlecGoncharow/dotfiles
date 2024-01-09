@@ -134,6 +134,7 @@ alias find=fd
 alias pls='sudo $(history -p !!)'
 alias jai="~/jai/bin/jai"
 export PATH=~/bin:$PATH
+export PATH=~/go/bin:$PATH
 export PATH=~/.local/bin:$PATH
 export EDITOR=nvim
 

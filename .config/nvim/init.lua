@@ -3,11 +3,10 @@ require('settings')
 require('mappings')
 require('fzf')
 require('lsp')
+require('lspsaga_conf')
 require('treesitter')
 require('highlighting')
 require('autocomplete')
 require('powerline')
-
-
--- plugins
-require('neoscroll').setup()
+require('git')
+require('ls')
