@@ -66,4 +66,4 @@ require 'jabs'.setup {
 }
 
 
-Nmap('<c-f>', ':JABSOpen<CR>')
+Nmap('<c-b>', ':JABSOpen<CR>')
