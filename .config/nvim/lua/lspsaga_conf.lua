@@ -51,9 +51,6 @@ require('lspsaga').setup({
   },
 })
 
-Nmap('<c-d>', ':Lspsaga outline<CR>')
-Nmap('<c-e>', ':Lspsaga show_buf_diagnostics<CR>')
+Nmap('<c-e>', ':Lspsaga outline<CR>')
+Nmap('<c-d>', ':Lspsaga show_buf_diagnostics<CR>')
 Nmap('<c-a>', ':Lspsaga code_action<CR>')
-
-
-Nmap('t', ':Lspsaga term_toggle<CR>')

@@ -30,3 +30,10 @@ Nmap("<c-k>", ":wincmd k<CR>")
 Nmap("<c-j>", ":wincmd j<CR>")
 Nmap("<c-h>", ":wincmd h<CR>")
 Nmap("<c-l>", ":wincmd l<CR>")
+
+-- pane spawn
+Nmap("t", ':split<CR>:wincmd j<CR>:term<CR>a')
+Nmap("s", ':vs<CR>:wincmd l<CR>')
+
+-- escape terminal mode easier
+Tmap('<Esc>', '<C-\\><C-n>')
