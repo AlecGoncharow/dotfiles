@@ -20,7 +20,8 @@ local on_attach = function(client, bufnr)
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+  vim.keymap.set('n', 'gk', vim.lsp.buf.hover, bufopts)
+  vim.keymap.set('n', '<leader><leader>', vim.lsp.buf.hover, bufopts)
   vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
   vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
   vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
@@ -72,10 +73,10 @@ lspconfig.bashls.setup({
 })
 
 
-require'lspconfig'.sqlls.setup({
-	server = {
-		on_attach = on_attach,
-	}
+require 'lspconfig'.sqlls.setup({
+  server = {
+    on_attach = on_attach,
+  }
 })
 
 -- https://github.com/nikeee/dot-language-server

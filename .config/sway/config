@@ -30,7 +30,7 @@ set $my-term alacritty
 bindsym $mod+Return exec --no-startup-id $my-term
 
 # kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+Shift+q exec --no-startup-id ~/bin/safequit
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec --no-startup-id fuzzel
@@ -189,6 +189,7 @@ bindsym ctrl+Mod1+Tab exec --no-startup-id  "xinput set-prop 'pointer:Logitech M
 
 #Dunst
 exec_always --no-startup-id dunst
+bindsym $mod+Escape exec --no-startup-id  "dunstctl close-all"
 
 # polkit
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
@@ -217,6 +218,8 @@ bar {
 # Set inner/outer gaps
 gaps inner 10
 gaps outer 0
+smart_gaps on
+smart_borders on
 
 for_window {
   [class="firefox"] border none
@@ -257,7 +260,9 @@ bindswitch --reload --locked lid:off output $laptop_screen enable
 workspace 1 output 'LG Electronics LG ULTRAGEAR 107NTDVCR242' eDP-1
 workspace 2 output 'Dell Inc. DELL P2723QE 3940MP3' eDP-1
 
-bindsym --release Print exec grim -g "$(slurp)" -t png - | wl-copy -t image/png
+bindsym --release Print exec ~/bin/screenshot
+bindsym --release Scroll_Lock exec ~/bin/memezoom
+bindsym --release XF86AudioMedia exec ~/bin/memezoom
 
 # Sway display things
 output 'LG Electronics LG ULTRAGEAR 107NTDVCR242' {

@@ -38,7 +38,7 @@ require('lualine').setup {
     lualine_b = {},
     lualine_c = {},
     lualine_x = {},
-    lualine_y = {},
+    lualine_y = { require('auto-session.lib').current_session_name, },
     lualine_z = { 'tabs' }
   },
   winbar = {},

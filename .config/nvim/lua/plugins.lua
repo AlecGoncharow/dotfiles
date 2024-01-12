@@ -54,25 +54,14 @@ return require('packer').startup(function()
 
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   use 'scrooloose/nerdcommenter' -- commenting shortcuts
-  use {
-    "folke/which-key.nvim",
-    config = function()
-      vim.o.timeout = true
-      vim.o.timeoutlen = 300
-      require("which-key").setup {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-      }
-    end
-  }
 
-  use 'tpope/vim-eunuch'   -- wrappers UNIX commands
-  use 'tpope/vim-surround' -- surround characters shortcuts
-  use 'tpope/vim-vinegar'  -- make explore better
-  use 'tpope/vim-endwise'  -- wisely add
-  use 'tpope/vim-repeat'   -- repeat for plugins
+  use 'tpope/vim-eunuch'         -- wrappers UNIX commands
+  use 'tpope/vim-surround'       -- surround characters shortcuts
+  use 'tpope/vim-vinegar'        -- make explore better
+  use 'tpope/vim-endwise'        -- wisely add
+  use 'tpope/vim-repeat'         -- repeat for plugins
   use {
-    'prichrd/netrw.nvim',  -- particles for ^
+    'prichrd/netrw.nvim',        -- particles for ^
     config = function()
       require("netrw").setup {
         directory = '', -- Directory icon
@@ -129,4 +118,15 @@ return require('packer').startup(function()
 
   use 'tpope/vim-dadbod' -- SQL
   use 'nanotee/sqls.nvim'
+
+  use {
+    'rmagatti/auto-session',
+    config = function()
+      vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+      require("auto-session").setup {
+        log_level = "error",
+        auto_session_suppress_dirs = { "~/", "~/Downloads", "/" },
+      }
+    end
+  }
 end)

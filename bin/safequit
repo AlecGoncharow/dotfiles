@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+FOCUSED=$(swaymsg -t get_tree | jq -r '.. | (.nodes? // empty)[] | select(.focused) | .name')
+
+main() {
+  echo "$FOCUSED"
+  if [[ "$FOCUSED" == neovim* ]]; then
+    notify-send "pls dont kill neovims like this"
+    exit 0
+  fi
+
+  swaymsg kill
+}
+
+main "$@"

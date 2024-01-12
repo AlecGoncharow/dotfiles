@@ -1,0 +1,22 @@
+[user]
+	name = Alec Goncharow
+	email = alec@goncharow.dev
+[core]
+	editor = nvim
+[pull]
+	rebase = true
+[init]
+	defaultBranch = main
+[diff]
+  tool = difftastic
+[difftool]
+  prompt = false
+[difftool "difftastic"]
+  cmd = difft "$LOCAL" "$REMOTE"
+[pager]
+  difftool = true
+# `git dft` is less to type than `git difftool`.
+[alias]
+  difft = difftool
+  dift = difftool
+  dft = difftool

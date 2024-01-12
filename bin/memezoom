@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+set -o errexit
+set -o nounset
+set -o pipefail
+if [[ "${TRACE-0}" == "1" ]]; then
+    set -o xtrace
+fi
+
+FOCUSED=$(swaymsg -t get_outputs | jq '.[] | select(.focused) | .rect | "\(.x),\(.y) \(.width)x\(.height)"')
+TMP=""
+
+main() {
+  TMP=$(mktemp)
+  grim -g "$(eval echo "$FOCUSED")" "$TMP"
+  imv -u nearest_neighbour "$TMP" -f
+  #swaymsg '[app_id="imv"] fullscreen enable'
+}
+
+main "$@"
+rm "$TMP"
