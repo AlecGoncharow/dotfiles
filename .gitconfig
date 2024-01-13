@@ -3,6 +3,7 @@
 	email = alec@goncharow.dev
 [core]
 	editor = nvim
+	excludesfile = /home/algo/.gitignore_global
 [pull]
 	rebase = true
 [init]

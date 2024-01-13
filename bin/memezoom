@@ -13,7 +13,7 @@ TMP=""
 main() {
   TMP=$(mktemp)
   grim -g "$(eval echo "$FOCUSED")" "$TMP"
-  imv -u nearest_neighbour "$TMP" -f
+  imv -u nearest_neighbour "$TMP" -f -d
   #swaymsg '[app_id="imv"] fullscreen enable'
 }
 

@@ -1,0 +1,25 @@
+# rust?
+**/target
+**/*.rs.bk
+
+# idk
+*.swp
+
+# compiled shaders
+*.spv
+
+# mac pls
+.DS_STORE
+
+# vim sessions
+Session.vim
+
+
+# yoinked from zig-lang
+zig-cache/
+zig-out/
+/release/
+/debug/
+/build/
+/build-*/
+/docgen_tmp/
