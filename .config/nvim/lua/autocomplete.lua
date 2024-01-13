@@ -15,11 +15,13 @@ cmp.setup({
     end,
   },
   experimental = {
-    ghost_text = true,
+    ghost_text = {
+      hl_group = "CmpGhostText",
+    },
   },
   window = {
-    completion = cmp.config.window.bordered({border = 'none'}),
-    documentation = cmp.config.window.bordered({border = 'none'}),
+    completion = cmp.config.window.bordered({ border = 'none' }),
+    documentation = cmp.config.window.bordered({ border = 'none' }),
   },
   mapping = cmp.mapping.preset.insert({
     ['<C-b>'] = cmp.mapping.scroll_docs(-4),

@@ -3,7 +3,8 @@
 return require('packer').startup(function()
   use 'wbthomason/packer.nvim'
 
-  use 'morhetz/gruvbox'
+  -- use 'morhetz/gruvbox'
+  -- use 'tjdevries/colorbuddy.nvim'
   use 'edkolev/tmuxline.vim'
   use 'romainl/vim-cool'
 
@@ -19,13 +20,16 @@ return require('packer').startup(function()
 
   use 'RRethy/vim-illuminate'
   -- better quickfix buffer
-  use { 'kevinhwang91/nvim-bqf',
-    ft = 'qf',
+  use { 'kevinhwang91/nvim-bqf', ft = 'qf',
     config = function()
-      require('bqf').setup {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-      }
+      -- Adapt fzf's delimiter in nvim-bqf
+      require('bqf').setup({
+        filter = {
+          fzf = {
+            extra_opts = { '--bind', 'ctrl-o:toggle-all', '--delimiter', '│' }
+          }
+        }
+      })
     end
   }
   use 'matbme/JABS.nvim' -- buffer switcher
@@ -57,9 +61,9 @@ return require('packer').startup(function()
 
   use 'tpope/vim-eunuch'         -- wrappers UNIX commands
   use 'tpope/vim-surround'       -- surround characters shortcuts
-  use 'tpope/vim-vinegar'        -- make explore better
   use 'tpope/vim-endwise'        -- wisely add
   use 'tpope/vim-repeat'         -- repeat for plugins
+  use 'tpope/vim-vinegar'        -- make explore better
   use {
     'prichrd/netrw.nvim',        -- particles for ^
     config = function()
@@ -129,4 +133,6 @@ return require('packer').startup(function()
       }
     end
   }
+  -- auto close delimiters because lazy
+  use 'm4xshen/autoclose.nvim'
 end)

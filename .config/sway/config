@@ -219,7 +219,7 @@ bar {
 gaps inner 10
 gaps outer 0
 smart_gaps on
-smart_borders on
+smart_borders off
 
 for_window {
   [class="firefox"] border none

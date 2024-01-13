@@ -2,7 +2,7 @@ vim.g.matchup_matchparen_offscreen = { method = {} }
 
 require('lspsaga').setup({
   ui = {
-    border = 'none',
+    border = 'single',
   },
   outline = {
     win_position = 'right',
@@ -49,8 +49,50 @@ require('lspsaga').setup({
       exec = '<CR>',
     },
   },
+  finder = {
+    max_height = 0.5,
+    left_width = 0.4,
+    methods = {},
+    default = 'ref+imp',
+    layout = 'float',
+    silent = false,
+    filter = {},
+    fname_sub = nil,
+    sp_inexist = false,
+    sp_global = false,
+    ly_botright = false,
+    keys = {
+      shuttle = '[w',
+      toggle_or_open = '<CR>',
+      vsplit = 's',
+      split = 'i',
+      tabe = 't',
+      tabnew = 'r',
+      quit = { 'q', '<ESC>' },
+      close = '<C-c>k',
+    },
+  },
+  definition = {
+    width = 0.6,
+    height = 0.5,
+    save_pos = false,
+    keys = {
+      edit = '<C-c>o',
+      vsplit = '<C-c>v',
+      split = '<C-c>i',
+      tabe = '<C-c>t',
+      tabnew = '<C-c>n',
+      quit = { 'q', '<ESC>' },
+      close = '<C-c>k',
+    },
+  },
 })
 
 Nmap('<c-e>', ':Lspsaga outline<CR>')
 Nmap('<c-d>', ':Lspsaga show_buf_diagnostics<CR>')
 Nmap('<c-a>', ':Lspsaga code_action<CR>')
+Nmap('<leader>ca', ':Lspsaga code_action<CR>')
+Nmap('gr', ':Lspsaga finder ref<CR>')
+Nmap('gi', ':Lspsaga finder imp<CR>')
+Nmap('gd', ':Lspsaga goto_definition<CR>')
+Nmap('gD', ':Lspsaga goto_type_definition<CR>')

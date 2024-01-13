@@ -9,7 +9,7 @@ require 'jabs'.setup {
 
   width = 50,             -- default 50
   height = 10,            -- default 10
-  border = 'shadow',      -- none, single, double, rounded, solid, shadow, (or an array or chars). Default shadow
+  border = 'single',      -- none, single, double, rounded, solid, shadow, (or an array or chars). Default shadow
 
   offset = {              -- window position offset
     top = 2,              -- default 0

@@ -88,8 +88,20 @@ vim.cmd([[
   au BufRead,BufNewFile *.slimbars    set syntax=slim
 ]])
 
+vim.cmd([[
+" for debugging colorscheme
+function! SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
 
-vim.cmd('colorscheme gruvbox')
+command! Synstack call SynStack()
+]])
+
+
+vim.cmd('colorscheme yaks')
 vim.cmd([[
 " ### Transparency ###
 hi Normal guibg=none ctermbg=none
@@ -106,6 +118,11 @@ hi EndOfBuffer guibg=none ctermbg=none
 vim.o.wildmenu = true -- on TAB, complete options for system command
 vim.o.wildignore =
 'deps,.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,.DS_Store,*.aux,*.out,*.toc'
+
+-- sometimes shift is held down for too long while zoomer quitting
+vim.api.nvim_create_user_command('Q', 'q', {})
+vim.api.nvim_create_user_command('Qa', 'qa', {})
+vim.api.nvim_create_user_command('QA', 'qa', {})
 
 
 -- rust format on save
