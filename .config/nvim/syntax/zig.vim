@@ -1,3 +1,6 @@
+" NOTE I don't know how any of this works, I just yoinked it from zig vim
+" plugin for syntax highlighting debugging, keeping it around for now
+"
 " Vim syntax file
 " Language: Zig
 " Maintainer: Andrew Kelley

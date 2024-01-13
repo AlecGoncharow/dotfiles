@@ -127,7 +127,7 @@ for key ('k') bindkey -M vicmd ${key} history-substring-search-up
 for key ('j') bindkey -M vicmd ${key} history-substring-search-down
 unset key
 # }}} End configuration added by Zim install
-
+#
 alias cat=bat
 alias find=fd
 alias pls='sudo $(history -p !!)'
@@ -139,7 +139,10 @@ export EDITOR=nvim
 
 source ~/functions/zig.sh
 source ~/functions/fzf.sh
+source ~/.fzf/shell/completion.zsh
+source ~/.fzf/shell/key-bindings.zsh
 
 if [[ -f "$HOME/.zig/env" ]]; then
   source ~/.zig/env
 fi
+

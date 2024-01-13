@@ -23,4 +23,5 @@ opacity = 0.95
 dynamic_title = true
 
 [colors.primary]
+foreground = "#d3b58d"
 background = "#062625"

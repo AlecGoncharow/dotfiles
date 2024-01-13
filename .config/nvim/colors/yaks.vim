@@ -12,7 +12,7 @@ endif
 
 let g:colors_name="yaks"
 
-" Primary colors stolen from
+" Primary colors mostly stolen from
 " https://github.com/ryanpcmcquen/sublime_witness/blob/master/Witness.sublime-color-scheme
 
 "----------------------------------------------------------------
@@ -160,9 +160,9 @@ hi        SpellCap guifg=#ede0ab guibg=#7f7f43 gui=underline
 hi      SpellLocal guifg=#ede0ab guibg=#7f7f43 gui=underline
 hi       SpellRare guifg=#ede0ab guibg=#7f7f43 gui=underline
 
-
-" lol
-
+" --------------------------------
+" flailing
+" --------------------------------
 hi CmpGhostText guifg=lightblue guifg=none gui=italic
 
 hi link     zigVarDecl    Keyword

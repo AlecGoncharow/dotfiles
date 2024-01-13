@@ -13,7 +13,7 @@ require('lspsaga').setup({
     layout = 'float',
     keys = {
       toggle_or_jump = '<cr>',
-      quit = 'q',
+      quit = { 'q', '<ESC>' },
       jump = 'e',
     },
   },
@@ -33,7 +33,7 @@ require('lspsaga').setup({
     diagnostic_only_current = false,
     keys = {
       exec_action = 'o',
-      quit = 'q',
+      quit = { 'q', '<ESC>' },
       toggle_or_jump = '<CR>',
       quit_in_show = { 'q', '<ESC>' },
     },

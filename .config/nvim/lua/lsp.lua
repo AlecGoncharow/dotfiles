@@ -26,16 +26,6 @@ local on_attach = function(client, bufnr)
   end, bufopts)
   vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
   vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
-  --- following functions are now managed under ./lspsaga_conf.lua
-  -- vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-  -- vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-  -- vim.keymap.set('v', '<space>ca', vim.lsp.buf.code_action, bufopts)
-  -- vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts) see ./lspsaga_conf.lua
-  -- vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-  -- vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-
-  -- vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
-  -- vim.keymap.set('v', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
   -- disable lsp highlighting
   -- client.server_capabilities.semanticTokensProvider = nil
 end
@@ -76,6 +66,10 @@ lspconfig.bashls.setup({
   capabilities = capabilities,
 })
 
+lspconfig.vimls.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+})
 
 require 'lspconfig'.sqlls.setup({
   server = {
@@ -99,6 +93,7 @@ lspconfig.yamlls.setup {
     },
   }
 }
+
 
 lspconfig.lua_ls.setup {
   on_attach = on_attach,
@@ -147,19 +142,9 @@ lspconfig.sqls.setup {
   },
 }
 
--- close quickfix menu after selecting choice
-vim.api.nvim_create_autocmd(
-  "FileType", {
-    pattern = { "qf" },
-    command = [[nnoremap <buffer> <CR> <CR>:cclose<CR>]]
-  })
-
 vim.api.nvim_create_autocmd('BufWritePre', {
   pattern = '*.go',
   callback = function()
     vim.lsp.buf.code_action({ context = { only = { 'source.organizeImports' } }, apply = true })
   end
 })
-
--- local autocmd = vim.api.nvim_create_autocmd
--- autocmd({ "BufLeave" }, { pattern = { "*" }, command = "if &buftype == 'quickfix'|q|endif" })
