@@ -100,7 +100,7 @@ command! Synstack call SynStack()
 ]])
 -- highlights the list of words following "Todo" if they are parsed in what looks like a comment
 vim.cmd([[
-autocmd Syntax * syntax keyword Todo note NOTE fixme FIXME todo TODO speed SPEED hack HACK safety SAFETY containedin=.*Comment
+autocmd Syntax * syntax keyword Todo note NOTE fixme FIXME todo TODO speed SPEED hack HACK safety SAFETY containedin=.*Comment.*
 ]])
 
 

@@ -141,6 +141,7 @@ source ~/functions/zig.sh
 source ~/functions/fzf.sh
 source ~/.fzf/shell/completion.zsh
 source ~/.fzf/shell/key-bindings.zsh
+fpath=(~/code/github/zig/shell-completions $fpath)
 
 if [[ -f "$HOME/.zig/env" ]]; then
   source ~/.zig/env

@@ -78,7 +78,7 @@ hi      MatchParen guifg=none    guibg=none    gui=underline
 hi          Visual guifg=#2c4e6c guibg=#ffffff gui=none
 hi       VisualNOS guifg=#2c4e6c guibg=#ffffff gui=none
 hi         NonText guifg=#2c4e6c guibg=none    gui=none
-hi            Todo guifg=#ede0ab guibg=none    gui=bold
+hi            Todo guifg=#ede0ab guibg=none    gui=underline
 hi      Underlined guifg=none    guibg=none    gui=underline
 hi           Error guifg=#edabb8 guibg=none    gui=none
 hi        ErrorMsg guifg=#edabb8 guibg=none    gui=none
@@ -104,7 +104,7 @@ hi        Function guifg=none      guibg=none    gui=none
 " --------------------------------
 " Language constructs
 " --------------------------------
-hi         Comment guifg=#3fdf1f guibg=none    gui=italic
+hi         Comment guifg=#3fdf1f guibg=none    gui=none
 
 hi       Statement guifg=#b8edab guibg=none    gui=none
 hi     Conditional guifg=#b8edab guibg=none    gui=none
@@ -117,9 +117,9 @@ hi       Exception guifg=#b8edab guibg=none    gui=none
 hi         Special guifg=#abede0 guibg=none    gui=none
 hi     SpecialChar guifg=#abede0 guibg=none    gui=none
 hi             Tag guifg=#abede0 guibg=none    gui=none
-hi       Delimiter guifg=##80a8cb guibg=none    gui=none
+hi       Delimiter guifg=#80a8cb guibg=none    gui=none
 hi           Noise guifg=#80a8cb guibg=none    gui=none
-hi  SpecialComment guifg=#ede0ab guibg=none    gui=none
+hi  SpecialComment guifg=#ede0ab guibg=none    gui=bold
 hi           Debug guifg=#ede0ab guibg=none    gui=none
 
 " ----------

@@ -1,12 +1,17 @@
-#!/bin/nu
-let wallpapers_path = "~/wallpapers/low-poly"
-swaymsg -t get_outputs | 
-    rg name | 
-    str trim -a |
-    split row "," | 
-    split column ":" | 
-    get column2 | 
-    str trim | str trim -c '"' |
-    each {|output|
-        swaymsg $"output ($output) bg `find ($wallpapers_path) -type f | shuf -n 1` fill"
-    }
+#!/usr/bin/env bash
+
+set -o errexit
+set -o nounset
+set -o pipefail
+if [[ "${TRACE-0}" == "1" ]]; then
+    set -o xtrace
+fi
+
+OUTPUTS=$(swaymsg -t get_outputs | jq -r '.[] | .name')
+export WALLPAPERS="$HOME/wallpapers/low-poly"
+
+main() {
+  echo "$OUTPUTS" | xargs -I{} sh -c "swaymsg output {} bg $(find "$WALLPAPERS" -type f | shuf -n 1) fill"
+}
+
+main "$@"
