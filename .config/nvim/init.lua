@@ -13,7 +13,11 @@ require('jabs_conf')
 require('lspsaga_conf')
 require('nerdcommenter_conf')
 require('bqf_conf')
+require('autosession_conf')
 
+if vim.g.neovide then
+  require('neovide_conf')
+end
 
 --- basic plugins setup
 require('autoclose').setup()

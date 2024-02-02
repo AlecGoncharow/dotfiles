@@ -105,18 +105,20 @@ autocmd Syntax * syntax keyword Todo note NOTE fixme FIXME todo TODO speed SPEED
 
 
 vim.cmd('colorscheme yaks')
-vim.cmd([[
-" ### Transparency ###
-hi Normal guibg=none ctermbg=none
-hi LineNr guibg=none ctermbg=none
-hi Folded guibg=none ctermbg=none
-hi NonText guibg=none ctermbg=none
-hi SpecialKey guibg=none ctermbg=none
-hi VertSplit guibg=none ctermbg=none
-hi SignColumn guibg=none ctermbg=none
-hi EndOfBuffer guibg=none ctermbg=none
-]])
 
+if not vim.g.neovide then
+  vim.cmd([[
+  " ### Transparency ###
+  hi Normal guibg=none ctermbg=none
+  hi LineNr guibg=none ctermbg=none
+  hi Folded guibg=none ctermbg=none
+  hi NonText guibg=none ctermbg=none
+  hi SpecialKey guibg=none ctermbg=none
+  hi VertSplit guibg=none ctermbg=none
+  hi SignColumn guibg=none ctermbg=none
+  hi EndOfBuffer guibg=none ctermbg=none
+  ]])
+end
 -- Commands mode
 vim.o.wildmenu = true -- on TAB, complete options for system command
 vim.o.wildignore =

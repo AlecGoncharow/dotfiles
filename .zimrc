@@ -47,7 +47,7 @@ zmodule zsh-users/zsh-autosuggestions
 # }}} End configuration added by Zim install
 
 # Adds aliases and better defaults for exa.
-zmodule exa
+# zmodule exa
 # Configures fzf for faster fetching of files and directories names.
 zmodule fzf
 # Provides a convenient way to load ssh-agent.

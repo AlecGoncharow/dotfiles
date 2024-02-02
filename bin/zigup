@@ -97,6 +97,14 @@ fi
 cd "$(dirname "$0")"
 
 main() {
+  # Transform long options to short ones
+  for arg in "$@"; do
+    shift
+    case "$arg" in
+      '--force')     set -- "$@" '-f'   ;;
+      *)             set -- "$@" "$arg" ;;
+    esac
+  done
     force=0
     while getopts "f" o; do
       case "${o}" in
@@ -162,7 +170,6 @@ esac
 
     if [[ $force == 0 && "$installed_zig_version" == "$zig_master_version" ]]; then
       echo "zig up to date"
-      exit 0
     else
       echo "zig upgrade avaliable: $installed_zig_version -> $zig_master_version"
       if prompt_confirm "Proceed?"; then

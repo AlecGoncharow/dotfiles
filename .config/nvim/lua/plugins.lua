@@ -123,16 +123,7 @@ return require('packer').startup(function()
   use 'tpope/vim-dadbod' -- SQL
   use 'nanotee/sqls.nvim'
 
-  use {
-    'rmagatti/auto-session',
-    config = function()
-      vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
-      require("auto-session").setup {
-        log_level = "error",
-        auto_session_suppress_dirs = { "~/", "~/Downloads", "/" },
-      }
-    end
-  }
+  use 'rmagatti/auto-session'
   -- auto close delimiters because lazy
   use 'm4xshen/autoclose.nvim'
 end)

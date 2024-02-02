@@ -28,6 +28,8 @@ floating_modifier $mod
 # start a terminal
 set $my-term alacritty
 bindsym $mod+Return exec --no-startup-id $my-term
+bindsym $mod+t exec --no-startup-id $my-term
+bindsym $mod+n exec --no-startup-id neovide
 
 # kill focused window
 bindsym $mod+Shift+q exec --no-startup-id ~/bin/safequit
@@ -225,6 +227,7 @@ for_window {
   [class="firefox"] border none
   [app_id="firefox"] border none
   [app_id="Alacritty"] border pixel 2
+  [app_id="neovide"] border pixel 2
   [class="steam"] border none
   [class="Godot"] floating enable
   [window_role="pop-up"] floating enable
