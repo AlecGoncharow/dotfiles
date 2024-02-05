@@ -1,5 +1,3 @@
-# ~/.config/starship.toml
-
 # Wait 10 milliseconds for starship to check files under the current directory.
 scan_timeout = 10
 
@@ -38,8 +36,8 @@ crust = "#11111b"
 
 
 [git_branch]
-style='lavender'
+style='bold lavender'
 
 
 [directory]
-style='teal'
+style='bold teal'

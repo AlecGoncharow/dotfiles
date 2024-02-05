@@ -1,8 +1,11 @@
 vim.g.neovide_transparency = 0.95
 -- vim.g.neovide_refresh_rate = 144
-vim.g.neovide_cursor_vfx_mode = 'wireframe'
+-- vim.g.neovide_cursor_vfx_mode = 'wireframe'
 vim.g.neovide_cursor_animation_length = 0.03
 vim.g.neovide_cursor_trail_size = 0.9
+vim.g.neovide_scroll_animation_length = 0.3
+-- vim.g.neovide_scroll_animation_far_lines = 9999
+-- vim.g.neovide_unlink_border_highlights = true
 vim.o.guifont = "Fira Mono:h13"
 
 vim.cmd([[

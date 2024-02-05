@@ -144,6 +144,7 @@ source ~/.fzf/shell/key-bindings.zsh
 fpath=(~/code/github/zig/shell-completions $fpath)
 
 export LS_COLORS="$(vivid generate catppuccin-mocha)"
+zstyle ':completion:*:default' list-colors "$LS_COLORS"
 
 if [[ -f "$HOME/.zig/env" ]]; then
   source ~/.zig/env
