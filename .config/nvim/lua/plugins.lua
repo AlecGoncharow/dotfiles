@@ -126,4 +126,6 @@ return require('packer').startup(function()
   use 'rmagatti/auto-session'
   -- auto close delimiters because lazy
   use 'm4xshen/autoclose.nvim'
+
+  use 'mg979/vim-visual-multi'
 end)

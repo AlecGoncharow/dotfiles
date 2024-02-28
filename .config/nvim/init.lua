@@ -14,6 +14,7 @@ require('lspsaga_conf')
 require('nerdcommenter_conf')
 require('bqf_conf')
 require('autosession_conf')
+require('autoclose_conf')
 
 if vim.g.neovide then
   require('neovide_conf')

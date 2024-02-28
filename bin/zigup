@@ -73,11 +73,11 @@ install_zls() {
    zls_path="$zig_root/zls"
    if [ ! -d "$zls_path" ]; then
      echo "cloning zls"
-     git clone https://github.com/zigtools/zls.git "$zls_path"
+     git clone https://github.com/zigtools/zls.git "$zls_path" --depth 1 --single-branch --branch master
    fi
    cd "$zls_path"
-   echo "pulling zls"
-   git pull
+   echo "fetching zls"
+   git fetch origin master:master --depth 1
    echo "building zls"
    zig build -Doptimize=ReleaseSafe
 
