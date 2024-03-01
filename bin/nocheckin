@@ -18,11 +18,6 @@ CL_NONE='\e[0m'
 MESSAGE_0="${CL_BRED}Error:${CL_NONE} $SEARCH_TARGET(s) were found in "
 MESSAGE_1="file(s) - ${CL_BRED}ignoring commit:${CL_NONE}"
 
-_=$(git status)
-if [ $? -ne 0 ]; then
-  exit 1;
-fi
-
 SEARCH_CMD="git diff --staged -i --diff-filter=d --name-only -G $SEARCH_TARGET --relative $PWD"
 GREP_CMD="grep -H $SEARCH_TARGET -n --color=always" # <filename>:line******
 
@@ -31,7 +26,7 @@ GREP_CMD="grep -H $SEARCH_TARGET -n --color=always" # <filename>:line******
 STATUS=$($SEARCH_CMD | wc -l)
 
 if ((STATUS > 0)); then
-	echo -e $MESSAGE_0 $STATUS $MESSAGE_1;
-	($SEARCH_CMD | xargs $GREP_CMD);
+	echo -e "$MESSAGE_0" "$STATUS" "$MESSAGE_1";
+	($SEARCH_CMD | xargs "$GREP_CMD");
 	exit 1;
 fi
