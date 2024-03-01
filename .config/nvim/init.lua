@@ -1,4 +1,3 @@
--- TODO SPEED
 require('plugins')
 require('settings')
 require('mappings')
@@ -15,6 +14,7 @@ require('nerdcommenter_conf')
 require('bqf_conf')
 require('autosession_conf')
 require('autoclose_conf')
+require('buffers')
 
 if vim.g.neovide then
   require('neovide_conf')

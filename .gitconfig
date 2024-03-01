@@ -8,6 +8,7 @@
 	rebase = true
 [init]
 	defaultBranch = main
+	templatedir = ~/.git_template
 [diff]
   tool = difftastic
 [difftool]

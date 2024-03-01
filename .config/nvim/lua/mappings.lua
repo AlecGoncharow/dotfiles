@@ -40,6 +40,7 @@ Nmap(">", ":vertical:resize +1<CR>")
 -- pane spawn
 Nmap("t", ':split<CR>:wincmd j<CR>:term<CR>')
 Nmap("s", ':vs<CR>:wincmd l<CR>')
+Nmap("<c-s>", ':only<CR>')
 
 -- escape terminal mode easier
 Tmap('<Esc>', '<C-\\><C-n>')
