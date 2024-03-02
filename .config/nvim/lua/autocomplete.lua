@@ -1,9 +1,6 @@
 -- Set up nvim-cmp.
 local cmp = require 'cmp'
 
--- https://old.reddit.com/r/neovim/comments/ucze6k/q_any_idea_why_i_cannot_do_tab_completion_on/i6eomr5/
-vim.keymap.set('c', '<tab>', '<C-z>', { silent = false })
-
 cmp.setup({
   snippet = {
     -- REQUIRED - you must specify a snippet engine

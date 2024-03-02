@@ -103,8 +103,11 @@ vim.cmd([[
 autocmd Syntax * syntax keyword Todo note NOTE fixme FIXME todo TODO speed SPEED hack HACK safety SAFETY containedin=.*Comment.*
 ]])
 
-
-vim.cmd('colorscheme yaks')
+vim.cmd([[
+colorscheme yaks
+set guicursor=n-v-c:block-Cursor
+set guicursor+=i:ver25-iCursor
+]])
 
 if not vim.g.neovide then
   vim.cmd([[

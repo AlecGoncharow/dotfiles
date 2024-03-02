@@ -77,7 +77,7 @@ install_zls() {
    fi
    cd "$zls_path"
    echo "fetching zls"
-   git fetch origin master:master --depth 1
+   git pull
    echo "building zls"
    zig build -Doptimize=ReleaseSafe
 

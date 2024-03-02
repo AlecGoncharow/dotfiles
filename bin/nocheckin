@@ -27,6 +27,6 @@ STATUS=$($SEARCH_CMD | wc -l)
 
 if ((STATUS > 0)); then
 	echo -e "$MESSAGE_0" "$STATUS" "$MESSAGE_1";
-	($SEARCH_CMD | xargs "$GREP_CMD");
+	($SEARCH_CMD | xargs $GREP_CMD);
 	exit 1;
 fi
