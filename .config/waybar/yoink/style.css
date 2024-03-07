@@ -1,70 +1,51 @@
-/*
- * Tea green
- * https://en.wikipedia.org/wiki/Shades_of_green#Tea_green
- */
-@define-color highlight rgba(208, 240, 192, 0.4);
 @define-color hover rgba(208, 240, 192, 0.6);
+@define-color text #d3b58d;
+@define-color background rgba(6, 38, 37, 0.95);
+@define-color highlight rgba(12, 76, 74, 1.0);
 
 * {
-    border: none;
-    font-family: JetBrainsMono Nerd Font, Font Awesome, Roboto, Arial, sans-serif;
-    font-size: 13px;
-    border-radius: 5px;
+  border: none;
+  font-family: Fira Mono, Font Awesome, Roboto, Arial, sans-serif;
+  font-size: 15px;
 }
 
 window#waybar {
-    background-color: rgba(0,0,0, 0.0);
-    color: #ffffff;
+  background-color: @background;
+  color: @text;
 }
 
 /*-----module groups----*/
 .modules-right {
-	background-color: rgba(0,43,51,0.3);
-    margin: 2px 10px 0 0;
+  background-color: @background;
+  margin: 0;
 }
 .modules-center {
-	background-color: rgba(0,43,51,0.3);
-    margin: 2px 5px 0 0;
-    padding-left: 10px;
+  background-color: @background;
+  margin: 0;
+  padding-left: 10px;
 }
 .modules-left {
-    margin: 2px 0 0 5px;
-	background-color: rgba(0,43,51,0.3);
+  background-color: @background;
+  margin: 0;
 }
 /*-----modules indv----*/
 #workspaces button {
-    padding: 1px 5px;
-    background-color: transparent;
-    border-radius: 5px
+  padding: 1px 5px;
+  background-color: transparent;
 }
-/*
- * only curve first and last workspaces butons
-#workspaces button:first-child {
-    border-bottom-left-radius: 5px;
-    border-top-left-radius: 5px;
-}
-#workspaces button:last-child {
-    border-bottom-right-radius: 5px;
-    border-top-right-radius: 5px;
-}
-#workspaces button:only-child {
-    border-radius: 5px;
-}
-*/
-
 
 #workspaces button:hover {
-    box-shadow: inherit;
-	background-color: rgba(0,153,153,0.2);
+  box-shadow: inherit;
+  background-color: rgba(0,153,153,0.2);
 }
 
 #workspaces button.focused {
-	background-color: @highlight;
+  background-color: @highlight;
 }
 
 
 #workspaces button.urgent {
-    background-color: #eb4d4b;
+  background-color: #eb4d4b;
 }
 
 
@@ -83,49 +64,54 @@ window#waybar {
 #custom-power,
 #custom-menu,
 #idle_inhibitor {
-    padding: 0 10px;
-    color: #ffffff;
+  padding: 0 10px;
+  color: @text;
 }
 #mode {
-    color: #cc3436;
-    font-weight: bold;
+  color: #cc3436;
+  font-weight: bold;
 }
 #custom-power {
-    margin: 5px 5px;
-    padding: 1px 1px 1px 6px;
+  margin: 5px 5px;
+  padding: 1px 1px 1px 6px;
 }
 /*-----Indicators----*/
 #idle_inhibitor.activated {
-    color: #2dcc36;
+  color: #2dcc36;
 }
 #pulseaudio.muted {
-    color: #cc3436;
+  color: #cc3436;
 }
 
 #battery.charging, #battery.plugged {
-    color: #ffffff;
-    background-color: #26A65B;
+  color: #ffffff;
+  background-color: #26A65B;
+}
+
+#battery.warning:not(.charging) {
+  color: #0000ff;
+  background-color: #ffbf00;
 }
 
 @keyframes blink {
-    to {
-        background-color: #ffffff;
-        color: #000000;
-    }
+  to {
+    background-color: #ffffff;
+    color: #000000;
+  }
 }
 
 #battery.critical:not(.charging) {
-    background-color: #f53c3c;
-    color: #ffffff;
-    animation-name: blink;
-    animation-duration: 1s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+  background-color: #f53c3c;
+  color: #ffffff;
+  animation-name: blink;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
 
 #temperature.critical {
-    color: #cc3436;
+  color: #cc3436;
 }
 
 #tray {
@@ -133,42 +119,36 @@ window#waybar {
 }
 
 #tray > .passive {
-    -gtk-icon-effect: dim;
+  -gtk-icon-effect: dim;
 }
 
 #tray > .needs-attention {
-    -gtk-icon-effect: highlight;
-    background-color: #eb4d4b;
+  -gtk-icon-effect: highlight;
+  background-color: #eb4d4b;
 }
 
 #battery {
-  /*background-color: #FF8000;*/
   padding-right: 20px;
 }
 
-#clock {
-  background-color: @highlight;
-}
-
-
 button {
-    /* Use box-shadow instead of border so the text isn't offset */
-    box-shadow: inset 0 -3px transparent;
-    /* Avoid rounded borders under each button name */
-    border: none;
-    border-radius: 0;
+  /* Use box-shadow instead of border so the text isn't offset */
+  box-shadow: inset 0 -3px transparent;
+  /* Avoid rounded borders under each button name */
+  border: none;
+  border-radius: 0;
 }
 
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 button:hover {
-    background: inherit;
-    box-shadow: inset 0 -3px #ffffff;
+  background: inherit;
+  box-shadow: inset 0 -3px #ffffff;
 }
 
 #workspaces button {
-    padding: 0 5px;
-    background-color: transparent;
-    color: #ffffff;
+  padding: 0 5px;
+  background-color: transparent;
+  color: @text;
 }
 
 
