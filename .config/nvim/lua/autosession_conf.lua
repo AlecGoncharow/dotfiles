@@ -1,3 +1,17 @@
+function string.starts(String, Start)
+  return string.sub(String, 1, string.len(Start)) == Start
+end
+
+-- for reasons beyond my comprehension, sessions get corrupted whenever a term buffer is left open, so let's just close all term to minimize friction
+local function close_term_bufs()
+  for _, buf_hndl in ipairs(vim.api.nvim_list_bufs()) do
+    local name = vim.api.nvim_buf_get_name(buf_hndl)
+    if string.starts(name, "term://") then
+      vim.api.nvim_buf_delete(buf_hndl, { force = true })
+    end
+  end
+end
+
 local opts = {
   log_level = 'error',
   auto_session_enable_last_session = false,
@@ -14,6 +28,7 @@ local opts = {
     pre_cwd_changed_hook = nil,      -- function: This is called after auto_session code runs for the `DirChangedPre` autocmd
     post_cwd_changed_hook = nil,     -- function: This is called after auto_session code runs for the `DirChanged` autocmd
   },
+  pre_save_cmds = { close_term_bufs }
 }
 
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
