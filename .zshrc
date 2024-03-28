@@ -137,6 +137,9 @@ export PATH=~/go/bin:$PATH
 export PATH=~/.local/bin:$PATH
 export EDITOR=nvim
 
+export MANPAGER='nvim +Man!'
+export MANWIDTH=80
+
 source ~/functions/zig.sh
 source ~/functions/fzf.sh
 source ~/.fzf/shell/completion.zsh

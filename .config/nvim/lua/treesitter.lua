@@ -1,6 +1,6 @@
 require 'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
-  ensure_installed = { "rust", "c", "lua", "vim", "help", "zig", "go" },
+  ensure_installed = { "rust", "c", "lua", "vim", "zig", "go" },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
@@ -14,9 +14,9 @@ require 'nvim-treesitter.configs'.setup {
 
   ---- If you need to change the installation directory of the parsers (see -> Advanced Setup)
   -- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
-
   highlight = {
-    enable = false,
+    enable = true,
+    disable = { "c", "rust", "zig", "go" },
   },
   matchup = {
     enable = true, -- mandatory, false will disable the whole extension

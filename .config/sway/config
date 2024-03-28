@@ -29,7 +29,7 @@ floating_modifier $mod
 set $my-term alacritty
 bindsym $mod+Return exec --no-startup-id $my-term
 bindsym $mod+t exec --no-startup-id $my-term
-bindsym $mod+n exec --no-startup-id neovide
+bindsym $mod+n exec --no-startup-id neovide '+Notes'
 
 # kill focused window
 bindsym $mod+Shift+q exec --no-startup-id ~/bin/safequit
@@ -269,13 +269,14 @@ bindsym --release XF86AudioMedia exec ~/bin/memezoom
 
 # Sway display things
 output 'LG Electronics LG ULTRAGEAR 107NTDVCR242' {
-	position 2560,0
+	position 1440,640
 	scale 1.0
 }
 
 output 'Dell Inc. DELL P2723QE 3940MP3' {
 	position 0,0
 	scale 1.5
+  transform 270
 }
 
 output eDP-1 {
