@@ -142,6 +142,11 @@ export MANWIDTH=80
 
 source ~/functions/zig.sh
 source ~/functions/fzf.sh
+
+# https://stackoverflow.com/a/14307127/11015039
+alias git=safegit
+compdef safegit=git
+
 source ~/.fzf/shell/completion.zsh
 source ~/.fzf/shell/key-bindings.zsh
 fpath=(~/code/github/zig/shell-completions $fpath)

@@ -1,0 +1,28 @@
+#!/bin/zsh
+
+set -o errexit
+set -o nounset
+set -o pipefail
+if [[ "${TRACE-0}" == "1" ]]; then
+    set -o xtrace
+fi
+
+local isforce=0
+local ispush=0
+for arg in "$@"; do
+  if [ "$arg" = "-f" ] || [ "$arg" = "--force" ]; then
+    isforce=1
+  fi
+
+  if [ "$arg" = "push" ]; then
+    ispush=1
+  fi
+
+  if [ "$ispush" = 1 ] && [ "$isforce" = 1 ]; then
+    echo "use \`--force-with-lease\` instead so you don't cause race conflicts in the repo"
+    return 1
+  fi
+done
+
+git "$@"
+

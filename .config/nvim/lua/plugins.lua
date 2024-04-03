@@ -8,6 +8,15 @@ return require('lazy').setup({
     dependencies = { "luarocks.nvim" },
     version = "*", -- Pin Neorg to the latest stable release
   },
+  -- Lua
+  {
+    "folke/zen-mode.nvim",
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    }
+  },
   'edkolev/tmuxline.vim',
   'romainl/vim-cool',
   -- common
@@ -91,7 +100,11 @@ return require('lazy').setup({
 
   'rmagatti/auto-session',
   -- auto close delimiters because lazy
-  'm4xshen/autoclose.nvim',
+  {
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    config = true,
+  },
 
   'mg979/vim-visual-multi',
 })

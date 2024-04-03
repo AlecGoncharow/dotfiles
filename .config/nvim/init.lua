@@ -26,7 +26,6 @@ require('lspsaga_conf')
 require('nerdcommenter_conf')
 require('bqf_conf')
 require('autosession_conf')
-require('autoclose_conf')
 require('buffers')
 require('oil_conf')
 require('neorg_conf') -- note taking
@@ -34,6 +33,3 @@ require('neorg_conf') -- note taking
 if vim.g.neovide then
   require('neovide_conf')
 end
-
---- basic plugins setup
-require('autoclose').setup()

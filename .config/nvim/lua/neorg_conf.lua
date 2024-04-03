@@ -5,6 +5,14 @@ require('neorg').setup({
     ["core.integrations.treesitter"] = {},
     ["core.autocommands"] = {},
     ["core.concealer"] = {},
+    ["core.export"] = {},
+    ["core.presenter"] = {
+      config = {
+        zen_mode = "zen-mode"
+      }
+    },
+    ["core.tempus"] = {},
+    ["core.summary"] = {},
     ["core.dirman"] = {
       config = {
         workspaces = {

@@ -6,6 +6,7 @@ vim.cmd([[
 HOME                  = os.getenv("HOME")
 
 vim.g.mapleader       = ' '
+vim.g.maplocalleader  = ','
 
 vim.wo.cursorline     = true
 vim.opt.termguicolors = true
