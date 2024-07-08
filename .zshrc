@@ -130,6 +130,7 @@ unset key
 #
 alias cat=bat
 alias find=fd
+alias open=xdg-open
 alias pls='sudo $(history -p !!)'
 alias jai="~/jai/bin/jai"
 export PATH=~/bin:$PATH
