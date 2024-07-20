@@ -127,7 +127,18 @@ for key ('k') bindkey -M vicmd ${key} history-substring-search-up
 for key ('j') bindkey -M vicmd ${key} history-substring-search-down
 unset key
 # }}} End configuration added by Zim install
-#
+
+zmodload -F zsh/terminfo +p:terminfo
+# Bind ^[[A/^[[B manually so up/down works both before and after zle-line-init
+for key ('^[[A' '^P' ${terminfo[kcuu1]}) bindkey ${key} history-substring-search-up
+for key ('^[[B' '^N' ${terminfo[kcud1]}) bindkey ${key} history-substring-search-down
+for key ('k') bindkey -M vicmd ${key} history-substring-search-up
+for key ('j') bindkey -M vicmd ${key} history-substring-search-down
+unset key
+# }}} End configuration added by Zim install
+autoload -U +X bashcompinit && bashcompinit
+autoload -U +X compinit && compinit
+
 alias cat=bat
 alias find=fd
 alias open=xdg-open
@@ -143,6 +154,8 @@ export MANWIDTH=80
 
 source ~/functions/zig.sh
 source ~/functions/fzf.sh
+source ~/functions/ssh.sh
+alias ssh=auto_agent_ssh
 
 # https://stackoverflow.com/a/14307127/11015039
 alias git=safegit
