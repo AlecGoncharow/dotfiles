@@ -1,6 +1,7 @@
 -- Set up nvim-cmp.
 local cmp = require 'cmp'
 
+
 cmp.setup({
   snippet = {
     -- REQUIRED - you must specify a snippet engine
@@ -11,11 +12,12 @@ cmp.setup({
       -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
     end,
   },
-  experimental = {
-    ghost_text = {
-      hl_group = "CmpGhostText",
-    },
-  },
+  -- can't figure this out, could be cool if ghost text actually took on different color
+  -- experimental = {
+  -- ghost_text = {
+  -- hl_group = "CmpGhostText",
+  -- },
+  -- },
   window = {
     completion = cmp.config.window.bordered({ border = 'none' }),
     documentation = cmp.config.window.bordered({ border = 'none' }),
@@ -23,8 +25,8 @@ cmp.setup({
   mapping = cmp.mapping.preset.insert({
     ['<C-b>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-y>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-    ['<C-e>'] = cmp.mapping.abort(),
+    ['<C-y>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    ['<C-c>'] = cmp.mapping.complete(),
   }),
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
@@ -35,7 +37,10 @@ cmp.setup({
     -- { name = 'snippy' }, -- For snippy users.
   }, {
     { name = 'buffer' },
-  })
+  }),
+  completion = {
+    autocomplete = false,
+  }
 })
 
 -- Set configuration for specific filetype.

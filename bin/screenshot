@@ -12,11 +12,13 @@ FOCUSED=$(swaymsg -t get_tree | jq '.. | (.nodes? // empty)[] | select(.focused)
 main() {
   rect="$(slurp)"
   if [ $? -eq 0 ]; then
-    grim -g "$rect" -t png - | wl-copy -t image/png
+    grim -g "$rect" ~/screenshot.png
   else
-    grim -g "$(eval echo "$FOCUSED")" -t png - | wl-copy -t image/png
+    grim -g "$(eval echo "$FOCUSED")" ~/screenshot.png
+
   fi
 
+  cat ~/screenshot.png | wl-copy -t image/png
 }
 
 main "$@"

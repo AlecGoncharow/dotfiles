@@ -26,10 +26,10 @@ font pango:Fira Mono 8
 floating_modifier $mod
 
 # start a terminal
-set $my-term alacritty
+set $my-term ghostty
 bindsym $mod+Return exec --no-startup-id $my-term
 bindsym $mod+t exec --no-startup-id $my-term
-bindsym $mod+n exec --no-startup-id neovide '+Notes'
+bindsym $mod+m exec --no-startup-id neovide '+Notes'
 
 # kill focused window
 bindsym $mod+Shift+q exec --no-startup-id ~/bin/safequit
@@ -38,10 +38,10 @@ bindsym $mod+Shift+q exec --no-startup-id ~/bin/safequit
 bindsym $mod+d exec --no-startup-id fuzzel
 
 # change focus
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
+bindsym $mod+n focus left
+bindsym $mod+e focus down
+bindsym $mod+u focus up
+bindsym $mod+i focus right
 
 # alternatively, you can use the cursor keys:
 #bindsym $mod+Left focus left
@@ -50,10 +50,10 @@ bindsym $mod+l focus right
 #bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
+bindsym $mod+Shift+n move left
+bindsym $mod+Shift+e move down
+bindsym $mod+Shift+u move up
+bindsym $mod+Shift+i move right
 
 # alternatively, you can use the cursor keys:
 #bindsym $mod+Shift+Left move left
@@ -70,7 +70,7 @@ bindsym $mod+f fullscreen toggle
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $mod+Shift+w layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -145,7 +145,7 @@ bindsym $mod+Shift+0 move container to workspace $ws10; workspace $ws10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
-bindsym $mod+Shift+e exec "swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway?' -B 'Yes, exit sway' 'swaymsg exit'"
+bindsym $mod+Shift+k exec "swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway?' -B 'Yes, exit sway' 'swaymsg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -176,7 +176,7 @@ bindsym $mod+r mode "resize"
 mode "game" {
 	bindsym $mod+Shift+o mode "default"
 }
-bindsym $mod+o mode "game"
+bindsym $mod+g mode "game"
 
 # Walpaper
 # exec --no-startup-id feh --bg-fill ~/Pictures/wallpaper.png
@@ -227,6 +227,7 @@ for_window {
   [class="firefox"] border none
   [app_id="firefox"] border none
   [app_id="Alacritty"] border pixel 2
+  [app_id="com.mitchellh.ghostty"] border pixel 2
   [app_id="neovide"] border pixel 2
   [class="steam"] border none
   [class="Godot"] floating enable
@@ -252,7 +253,7 @@ client.unfocused "#2c2c2c" "#2b2b2b" "#888888" "#000000" "#2c2c2c"
 set $notify dunstify --timeout 1500
 
 # Set your laptop screen name
-set $laptop_screen 'eDP-1'
+set $laptop_screen 'eDP-2'
 
 # Clamshell mode or lock & sleep
 # This is a if/else statement: [ outputs_count == 1 ] && true || false
@@ -260,27 +261,24 @@ bindswitch --reload --locked lid:on exec '[ $(swaymsg -t get_outputs | grep name
 exec_always ~/bin/clamshell-toggle
 
 bindswitch --reload --locked lid:off output $laptop_screen enable
-workspace 1 output 'LG Electronics LG ULTRAGEAR 107NTDVCR242' eDP-1
-workspace 2 output 'Dell Inc. DELL P2723QE 3940MP3' eDP-1
 
 bindsym --release Print exec ~/bin/screenshot
 bindsym --release Scroll_Lock exec ~/bin/memezoom
 bindsym --release XF86AudioMedia exec ~/bin/memezoom
 
 # Sway display things
-output 'LG Electronics LG ULTRAGEAR 107NTDVCR242' {
-	position 1440,640
+output 'Dell Inc. Dell AW3821DW #G7QYMxgwAA+/' {
+	#position 0,0
+	#position 3840,0
+	position 2048,0
 	scale 1.0
+  mode 3840x1600@144Hz
 }
 
-output 'Dell Inc. DELL P2723QE 3940MP3' {
-	position 0,0
-	scale 1.5
-  transform 270
-}
 
 output eDP-2 {
-	position 4000,640
+	#position 3840,0
+	position 0,0
  	scale 1.25
 }
 

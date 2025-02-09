@@ -58,7 +58,6 @@ local lspconfig = require('lspconfig')
 lspconfig.zls.setup({
   on_attach = on_attach,
   capabilities = capabilities,
-
 })
 
 lspconfig.bashls.setup({
@@ -141,6 +140,35 @@ lspconfig.sqls.setup {
     },
   },
 }
+
+-- local lsp = require 'lspconfig'
+-- local configs = require 'lspconfig.configs'
+
+-- if not configs.jai_lsp then
+-- configs.jai_lsp = {
+-- default_config = {
+-- cmd = { 'jails' },
+-- filetypes = { 'jai' },
+-- }
+-- }
+-- end
+
+-- lspconfig.jai_lsp.setup({
+-- on_attach = on_attach,
+-- capabilities = capabilities,
+-- })
+
+lspconfig.ols.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  init_options = {
+    enable_references = true,
+    enable_rename = true,
+    enable_semantic_tokens = true,
+    enable_checker_only_saved = true,
+    enable_inlay_hints = true,
+  }
+})
 
 vim.api.nvim_create_autocmd('BufWritePre', {
   pattern = '*.go',

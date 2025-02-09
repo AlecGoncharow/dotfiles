@@ -33,3 +33,5 @@ require('neorg_conf') -- note taking
 if vim.g.neovide then
   require('neovide_conf')
 end
+
+require('leap').create_default_mappings()

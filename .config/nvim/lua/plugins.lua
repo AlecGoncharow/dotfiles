@@ -46,7 +46,7 @@ return require('lazy').setup({
   'scrooloose/nerdcommenter', -- commenting shortcuts
 
   'tpope/vim-eunuch',         -- wrappers UNIX commands
-  'tpope/vim-surround',       -- surround characters shortcuts
+  --'tpope/vim-surround',       -- surround characters shortcuts
   'tpope/vim-endwise',        -- wisely add
   'tpope/vim-repeat',         -- repeat for plugins
   -- 'tpope/vim-vinegar', -- make explore better
@@ -88,6 +88,9 @@ return require('lazy').setup({
   -- jai
   'rluba/jai.vim',
 
+  -- Odin
+  'Tetralux/odin.vim',
+
   'johmsalas/text-case.nvim',
 
   -- integer base conversions
@@ -107,4 +110,33 @@ return require('lazy').setup({
   },
 
   'mg979/vim-visual-multi',
+  {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {
+      keywords = {
+        FIX = {
+          icon = " ", -- icon used for the sign, and in search results
+          color = "error", -- can be a hex color, or a named color (see below)
+          alt = { "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
+          -- signs = false, -- configure signs for some keywords individually
+        },
+        TODO = { icon = " ", color = "info", alt = { "nocheckin" } },
+        HACK = { icon = " ", color = "warning" },
+        WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
+        PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
+        NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
+        TEST = { icon = "⏲ ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
+      },
+    }
+  },
+
+  -- movement
+  'ggandor/leap.nvim',
+  {
+    "chentoast/marks.nvim",
+    event = "VeryLazy",
+    opts = {
+    },
+  },
 })
