@@ -7,11 +7,12 @@ function frg {
     --delimiter ':' \
     --preview "bat --color=always {1} --theme='gruvbox-dark' --highlight-line {2}" \
     --preview-window 'up,60%,border-bottom,+{2}+3/3,~3')
-      file=${result%%:*}
-      linenumber=$(echo "${result}" | cut -d: -f2)
-      if [[ -n "$file" ]]; then
-        nvim +"${linenumber}" "$file"
-      fi
+
+    file=${result%%:*}
+    linenumber=$(echo "${result}" | cut -d: -f2)
+    if [[ -n "$file" ]]; then
+      nvim +"${linenumber}" "$file"
+    fi
 }
 
 alias rgf=frg

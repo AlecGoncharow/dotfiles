@@ -1,0 +1,18 @@
+command = /usr/bin/fish
+click-repeat-interval = 500
+auto-update-channel = tip
+
+background-opacity = 0.95
+foreground = #d3b58d
+background = #062625
+
+selection-invert-fg-bg = true
+
+window-theme = dark
+window-decoration = false
+
+cursor-text = #2c4e6c
+cursor-color = #90ee90
+
+font-size = 13
+font-family = FiraMono

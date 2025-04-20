@@ -39,9 +39,11 @@ cmp.setup({
     { name = 'buffer' },
   }),
   completion = {
-    autocomplete = false,
+    autocomplete = false
   }
 })
+
+vim.keymap.set('i', '<C-c>', cmp.mapping.complete(), {})
 
 -- Set configuration for specific filetype.
 cmp.setup.filetype('gitcommit', {
@@ -62,9 +64,9 @@ cmp.setup.cmdline({ '/', '?' }, {
 --  Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(':', {
   sources = cmp.config.sources({
-    { name = 'path' }
-  }, {
     { name = 'cmdline' }
+  }, {
+    { name = 'path' }
   }),
   matching = { disallow_symbol_nonprefix_matching = false }
 })

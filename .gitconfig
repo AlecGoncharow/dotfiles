@@ -22,3 +22,4 @@
   difft = difftool
   dift = difftool
   dft = difftool
+  fix = "!f() { ${EDITOR} `git diff --name-only`; }; f"
