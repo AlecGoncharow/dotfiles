@@ -23,3 +23,15 @@ require 'nvim-treesitter.configs'.setup {
     -- [options]
   },
 }
+local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+parser_config.jai = {
+  install_info = {
+    url = "/home/algo/code/github/tree-sitter-jai/",
+    files = { "src/parser.c", "src/scanner.c" },
+  },
+  filetype = "jai",
+  filetype_to_parsername = "jai",
+  indent = {
+    enable = true
+  }
+}

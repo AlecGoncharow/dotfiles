@@ -141,23 +141,6 @@ lspconfig.sqls.setup {
   },
 }
 
--- local lsp = require 'lspconfig'
--- local configs = require 'lspconfig.configs'
-
--- if not configs.jai_lsp then
--- configs.jai_lsp = {
--- default_config = {
--- cmd = { 'jails' },
--- filetypes = { 'jai' },
--- }
--- }
--- end
-
--- lspconfig.jai_lsp.setup({
--- on_attach = on_attach,
--- capabilities = capabilities,
--- })
-
 lspconfig.ols.setup({
   on_attach = on_attach,
   capabilities = capabilities,
@@ -169,6 +152,23 @@ lspconfig.ols.setup({
     enable_inlay_hints = true,
   }
 })
+local lsp = require("lsp-zero")
+local lspconfig = require("lspconfig")
+lsp.extend_lspconfig()
+
+local configs = require("lspconfig.configs")
+if not configs.jails then
+  configs.jails = {
+    default_config = {
+      cmd = { "jails" },
+      root_dir = lspconfig.util.root_pattern("jails.json", "build.jai", "main.jai"),
+      filetypes = { "jai" },
+      name = "Jails",
+    },
+  }
+end
+lspconfig.jails.setup({})
+vim.filetype.add({ extension = { jai = "jai", } })
 
 vim.api.nvim_create_autocmd('BufWritePre', {
   pattern = '*.go',
