@@ -1,4 +1,4 @@
-command = /usr/bin/fish
+command = /opt/homebrew/bin/fish
 click-repeat-interval = 500
 auto-update-channel = tip
 
@@ -9,10 +9,15 @@ background = #062625
 selection-invert-fg-bg = true
 
 window-theme = dark
-window-decoration = false
+window-decoration = true
 
 cursor-text = #2c4e6c
 cursor-color = #90ee90
+
+keybind = ctrl+up=goto_split:up
+keybind = ctrl+down=goto_split:down
+keybind = ctrl+left=goto_split:left
+keybind = ctrl+right=goto_split:right
 
 font-size = 13
 font-family = FiraMono

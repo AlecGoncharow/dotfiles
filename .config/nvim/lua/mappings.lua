@@ -26,10 +26,15 @@ function Tmap(shortcut, command)
 end
 
 -- pane nav
-Nmap("<leader>u", ":wincmd k<CR>")
-Nmap("<leader>e", ":wincmd j<CR>")
-Nmap("<leader>n", ":wincmd h<CR>")
-Nmap("<leader>i", ":wincmd l<CR>")
+-- Nmap("<leader>u", ":wincmd k<CR>")
+-- Nmap("<leader>e", ":wincmd j<CR>")
+-- Nmap("<leader>n", ":wincmd h<CR>")
+-- Nmap("<leader>i", ":wincmd l<CR>")
+--- pane nav
+Nmap("<leader>k", ":wincmd k<CR>")
+Nmap("<leader>j", ":wincmd j<CR>")
+Nmap("<leader>h", ":wincmd h<CR>")
+Nmap("<leader>l", ":wincmd l<CR>")
 
 -- -- pane resize
 -- Nmap("_", ":resize -1<CR>")
