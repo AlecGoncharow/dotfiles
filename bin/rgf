@@ -7,7 +7,7 @@ if [[ "${TRACE-0}" == "1" ]]; then
 fi
 
 main() {
-  result=$(rg --ignore-case --color=always --line-number --no-heading "$@" |
+  result=$(rg -L --ignore-case --color=always --line-number --no-heading "$@" |
     fzf --ansi \
     --color 'hl:-1:underline,hl+:-1:underline:reverse' \
     --delimiter ':' \

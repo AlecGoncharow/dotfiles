@@ -43,7 +43,7 @@ Nmap("<leader>l", ":wincmd l<CR>")
 -- pane spawn
 Nmap("<leader>t", ':split<CR>:wincmd j<CR>:term<CR>')
 Nmap("<leader>s", ':vs<CR>:wincmd l<CR>')
-Nmap("<leader>wo", ':only<CR>')
+Nmap("<leader>ow", ':only<CR>')
 
 -- escape terminal mode easier
 Tmap('<Esc>', '<C-\\><C-n>')

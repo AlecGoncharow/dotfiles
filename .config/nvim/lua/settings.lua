@@ -5,6 +5,8 @@ vim.cmd([[
 
 HOME                  = os.getenv("HOME")
 
+vim.notify            = require('notify')
+
 vim.g.mapleader       = ' '
 vim.g.maplocalleader  = ','
 

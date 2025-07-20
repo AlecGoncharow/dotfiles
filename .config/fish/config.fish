@@ -1,10 +1,11 @@
 /opt/homebrew/bin/brew shellenv | source
 if status is-interactive
     # Commands to run in interactive sessions can go here
+    atuin init fish | source
 end
 
 # Add to PATH
-#fish_add_path ~/bin
+fish_add_path ~/bin
 #fish_add_path ~/go/bin
 #fish_add_path ~/.local/bin
 
@@ -13,6 +14,11 @@ end
 #  fish_add_path /home/algo/.zig/zig
 #end
 #fish_add_path --prepend $HOME/.cargo/bin
+source "$HOME/.cargo/env.fish"
+
+fish_add_path /Users/algo/.opencode/bin
+
+
 
 # Set editor
 set -gx EDITOR nvim

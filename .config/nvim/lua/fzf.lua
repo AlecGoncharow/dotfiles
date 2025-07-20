@@ -1,11 +1,25 @@
 local fzf = require('fzf-lua')
+fzf.setup {
+  files = {
+    follow    = true,
+    no_ignore = false
+  },
+  grep = {
+    follow    = true,
+    no_ignore = false
+  }
+}
+
 vim.keymap.set('n', '<c-b>', fzf.buffers, {})
 vim.keymap.set('n', '<c-t>', fzf.marks, {})
-vim.keymap.set('n', '<leader>fb', fzf.lines, {})
-vim.keymap.set('n', '<leader>ff', fzf.files, {})
-vim.keymap.set('n', '<leader>fg', fzf.live_grep, {})
-vim.keymap.set('n', '<leader>fw', fzf.grep_cword, {})
-vim.keymap.set('n', '<leader>fW', fzf.grep_cWORD, {})
-vim.keymap.set('v', '<leader>ff', fzf.grep_visual, {})
+-- vim.keymap.set('n', '<leader>fb', fzf.lines, {})
+-- vim.keymap.set('n', '<leader>ff', fzf.files, {})
+vim.keymap.set('n', '<c-f>', fzf.live_grep, {})
+vim.keymap.set('n', '<leader>w', fzf.grep_cword, {})
+-- vim.keymap.set('n', '<c-w>', fzf.grep_cword, {})
+vim.keymap.set('n', '<leader>W', fzf.grep_cWORD, {})
+-- vim.keymap.set('n', '<c-W>', fzf.grep_cWORD, {})
+vim.keymap.set('v', '<c-f>', fzf.grep_visual, {})
+vim.keymap.set('v', '<leader>f>', fzf.grep_visual, {})
 
-vim.keymap.set('n', '<c-f>', fzf.grep_curbuf, {})
+vim.keymap.set('n', '<leader>f', fzf.grep_curbuf, {})

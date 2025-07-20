@@ -71,7 +71,7 @@ return require('lazy').setup({
   -- zig
   'ziglang/zig.vim',
   -- go
-  'ray-x/go.nvim',
+  -- 'ray-x/go.nvim',
 
   -- rust
   'rust-lang/rust.vim',
@@ -138,7 +138,7 @@ return require('lazy').setup({
     event = "VeryLazy",
     opts = {
     },
-    },
+  },
   {
     "VonHeikemen/lsp-zero.nvim",
     branch = "v2.x",
@@ -148,5 +148,12 @@ return require('lazy').setup({
       vim.g.lsp_zero_extend_cmp = 0
       vim.g.lsp_zero_extend_lspconfig = 0
     end,
+  },
+  {
+    'rcarriga/nvim-notify',
+    commit = 'b5825cf9ee881dd8e43309c93374ed5b87b7a896',
+    opts = {
+      background_colour = "#000000"
+    }
   },
 })

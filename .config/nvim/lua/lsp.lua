@@ -47,12 +47,12 @@ require("rust-tools").setup({
 })
 
 -- https://github.com/ray-x/go.nvim#lsp-cmp-support
-require('go').setup({
-  lsp_cfg = {
-    capabilities = capabilities,
-    on_attach = on_attach
-  }
-})
+-- require('go').setup({
+-- lsp_cfg = {
+-- capabilities = capabilities,
+-- on_attach = on_attach
+-- }
+-- })
 local lspconfig = require('lspconfig')
 
 lspconfig.zls.setup({
@@ -152,23 +152,23 @@ lspconfig.ols.setup({
     enable_inlay_hints = true,
   }
 })
-local lsp = require("lsp-zero")
-local lspconfig = require("lspconfig")
-lsp.extend_lspconfig()
+-- local lsp = require("lsp-zero")
+-- local lspconfig = require("lspconfig")
+-- lsp.extend_lspconfig()
 
-local configs = require("lspconfig.configs")
-if not configs.jails then
-  configs.jails = {
-    default_config = {
-      cmd = { "jails" },
-      root_dir = lspconfig.util.root_pattern("jails.json", "build.jai", "main.jai"),
-      filetypes = { "jai" },
-      name = "Jails",
-    },
-  }
-end
-lspconfig.jails.setup({})
-vim.filetype.add({ extension = { jai = "jai", } })
+-- local configs = require("lspconfig.configs")
+-- if not configs.jails then
+-- configs.jails = {
+-- default_config = {
+-- cmd = { "jails" },
+-- root_dir = lspconfig.util.root_pattern("jails.json", "build.jai", "main.jai"),
+-- filetypes = { "jai" },
+-- name = "Jails",
+-- },
+-- }
+-- end
+-- lspconfig.jails.setup({})
+-- vim.filetype.add({ extension = { jai = "jai", } })
 
 vim.api.nvim_create_autocmd('BufWritePre', {
   pattern = '*.go',

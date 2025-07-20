@@ -90,7 +90,7 @@ require('lspsaga').setup({
 
 Nmap('<c-l>', ':Lspsaga outline<CR>')
 -- Nmap('<c-d>', ':Lspsaga show_buf_diagnostics<CR>')
-Nmap('<c-w>', ':Lspsaga show_buf_diagnostics<CR>')
+Nmap('<c-x>', ':Lspsaga show_buf_diagnostics<CR>')
 Nmap('<c-a>', ':Lspsaga code_action<CR>')
 Nmap('<leader>ca', ':Lspsaga code_action<CR>')
 Vmap('<leader>ca', ':Lspsaga code_action<CR>')
