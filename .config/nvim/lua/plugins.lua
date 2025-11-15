@@ -45,10 +45,27 @@ return require('lazy').setup({
   { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
   'scrooloose/nerdcommenter', -- commenting shortcuts
 
-  'tpope/vim-eunuch',         -- wrappers UNIX commands
-  --'tpope/vim-surround',       -- surround characters shortcuts
-  'tpope/vim-endwise',        -- wisely add
-  'tpope/vim-repeat',         -- repeat for plugins
+  {
+    "kylechui/nvim-surround",
+    version = "^3.0.0", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = {
+      keymaps = {
+        insert          = '<C-g>z',
+        insert_line     = 'gC-ggZ',
+        normal          = 'gz',
+        normal_cur      = 'gZ',
+        normal_line     = 'gzz',
+        normal_cur_line = 'gZZ',
+        visual          = 'gz',
+        visual_line     = 'gZ',
+        delete          = 'gzd',
+        change          = 'gzc',
+      }
+    },
+  },
+  'tpope/vim-endwise', -- wisely add
+  'tpope/vim-repeat',  -- repeat for plugins
   -- 'tpope/vim-vinegar', -- make explore better
   {
     'stevearc/oil.nvim',
@@ -155,5 +172,8 @@ return require('lazy').setup({
     opts = {
       background_colour = "#000000"
     }
+  },
+  {
+    'edluffy/hologram.nvim'
   },
 })

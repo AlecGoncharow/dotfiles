@@ -6,7 +6,7 @@ end
 
 # Add to PATH
 fish_add_path ~/bin
-#fish_add_path ~/go/bin
+fish_add_path ~/go/bin
 #fish_add_path ~/.local/bin
 
 #if [ -f "$HOME/.zig/env" ];

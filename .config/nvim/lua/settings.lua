@@ -146,7 +146,8 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     print(vim.bo.filetype)
     -- idk what's happening but:
     --  https://github.com/sqls-server/sqls/issues/105
-    if vim.bo.filetype == 'sql' then
+    local banned = { sql = true, jai = true, c = true }
+    if banned[vim.bo.filetype] then
       return
     end
 
