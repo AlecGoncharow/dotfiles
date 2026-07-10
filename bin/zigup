@@ -31,7 +31,24 @@ help() {
 }
 
 install_zig() {
-    arch="x86_64-linux"
+    local os_type="$(uname -s)"
+    local cpu_arch="$(uname -m)"
+    
+    local zig_os
+    case "$os_type" in
+        Darwin) zig_os="macos" ;;
+        Linux) zig_os="linux" ;;
+        *) echo "Unsupported OS: $os_type"; exit 1 ;;
+    esac
+
+    local zig_arch
+    case "$cpu_arch" in
+        x86_64) zig_arch="x86_64" ;;
+        aarch64|arm64) zig_arch="aarch64" ;;
+        *) echo "Unsupported architecture: $cpu_arch"; exit 1 ;;
+    esac
+
+    arch="${zig_arch}-${zig_os}"
     zig_master_arch_json="$(jq -r ".\"$arch\"" <<< "$zig_master_json")"
     zig_master_tarball="$(jq -r '.tarball' <<< "$zig_master_arch_json")"
     zig_master_shasum="$(jq -r '.shasum' <<< "$zig_master_arch_json")"
@@ -49,9 +66,16 @@ install_zig() {
     zig_tarball_path="$zig_root/tmp/zig.tar"
     wget -O "$zig_root/tmp/zig.tar" "$zig_master_tarball"
 
-    if ! echo "$zig_master_shasum $zig_tarball_path" | sha256sum --check; then
-      echo "invalid tarball; bailing"
-      exit 1
+    if command -v shasum >/dev/null 2>&1; then
+      if ! echo "$zig_master_shasum  $zig_tarball_path" | shasum -a 256 -c -; then
+        echo "invalid tarball; bailing"
+        exit 1
+      fi
+    else
+      if ! echo "$zig_master_shasum  $zig_tarball_path" | sha256sum --check; then
+        echo "invalid tarball; bailing"
+        exit 1
+      fi
     fi
 
     echo "extracting tarball"

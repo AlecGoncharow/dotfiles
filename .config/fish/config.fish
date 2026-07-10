@@ -17,6 +17,7 @@ fish_add_path ~/go/bin
 source "$HOME/.cargo/env.fish"
 
 fish_add_path /Users/algo/.opencode/bin
+fish_add_path /Users/algo/.local/bin
 
 
 
@@ -30,3 +31,7 @@ set -gx MANWIDTH 80
 fish_vi_key_bindings
 
 starship init fish | source
+
+
+# Added by Antigravity CLI installer
+set -gx PATH "/Users/algo/.local/bin" $PATH

@@ -35,3 +35,4 @@ if vim.g.neovide then
 end
 
 require('leap').create_default_mappings()
+require('jai_ctags')

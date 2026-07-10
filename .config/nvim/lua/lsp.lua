@@ -47,8 +47,12 @@ require("rust-tools").setup({
 })
 
 -- https://github.com/ray-x/go.nvim#lsp-cmp-support
-vim.lsp.enable('gopls')
 local lspconfig = require('lspconfig')
+
+lspconfig.gopls.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+})
 
 lspconfig.zls.setup({
   on_attach = on_attach,
