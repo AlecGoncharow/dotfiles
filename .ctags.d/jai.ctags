@@ -1,0 +1,19 @@
+--langdef=jai
+--map-jai=.jai
+
+--kinddef-jai=c,constant,constants
+--kinddef-jai=v,variable,variables
+--kinddef-jai=s,struct,structs
+--kinddef-jai=f,function,functions
+
+# Structs
+--regex-jai=/^[ \t]*([a-zA-Z0-9_\\\ \t]+)[ \t]*::[ \t]*struct/\1/s/
+
+# Functions (heuristic: anything with a parenthesis after :: )
+--regex-jai=/^[ \t]*([a-zA-Z0-9_\\\ \t]+)[ \t]*::.*\(/\1/f/
+
+# All other constants (fallbacks for ::)
+--regex-jai=/^[ \t]*([a-zA-Z0-9_\\\ \t]+)[ \t]*::/\1/c/
+
+# Variables (single colon, must not be followed by another colon)
+--regex-jai=/^[ \t]*([a-zA-Z0-9_\\\ \t]+)[ \t]*:[^:]/\1/v/
